@@ -1,0 +1,104 @@
+﻿
+.main-section {
+    width: 100%;
+    /*margin: 0 auto;*/
+    text-align: center;
+    padding: 0px 5px;
+}
+
+.dashbord {
+    width: 100%;
+    display: inline-block;
+    background-color: #a93226;
+    color: #fff;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.icon-section i {
+    font-size: 30px;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    background-color: #a93226;
+}
+
+.icon-section p {
+    margin: 0px;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.detail-section {
+    background-color: transparent;
+    height: 50px;
+    border-radius:10px;
+    margin:3px;
+    padding: 5px 0px;
+}
+
+/*.dashbord .detail-section:hover {
+    background-color: #D98880;
+}*/
+
+
+
+.dashbord-green .icon-section, .dashbord-green .icon-section i {
+    background-color: #16A085;
+}
+
+.dashbord-green .detail-section {
+    background-color: #149077;
+}
+
+.dashbord-orange .icon-section, .dashbord-orange .icon-section i {
+    background-color: #F39C12;
+}
+
+.dashbord-orange .detail-section {
+    background-color: #DA8C10;
+    color: white;
+}
+
+.dashbord-blue .icon-section, .dashbord-blue .icon-section i {
+    background-color: #2980B9;
+    color: white;
+}
+
+.dashbord-blue .detail-section {
+    background-color: #2573A6;
+    color: white;
+}
+
+.dashbord-red .icon-section, .dashbord-red .icon-section i {
+    background-color: #E74C3C;
+    color: white;
+}
+
+.round {
+    border-radius: 20px;
+}
+
+.dashbord-red .detail-section {
+    background-color: #CF4436;
+    color: white;
+}
+
+.dashbord-skyblue .icon-section, .dashbord-skyblue .icon-section i {
+    background-color: #8E44AD;
+    color: white;
+}
+
+.dashbord-skyblue .detail-section {
+    background-color: #803D9B;
+    color: white;
+}
+
+.sides_list_property_thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+}

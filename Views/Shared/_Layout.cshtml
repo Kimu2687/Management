@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TASK</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link href="~/font-awesome-4.7.0/font-awesome-4.7.0/css/StyleSheet.css" rel="stylesheet" />
     <link href="~/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" asp-append-version="true" rel="stylesheet" />
+    <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
+    <link href="~/css/dashboard_cards.css" asp-append-version="true" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <nav  class="navbar navbar-expand-sm  navbar-toggleable-sm bg-dark navbar-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm  navbar-toggleable-sm bg-dark  navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo_"  src="https://www.freepnglogos.com/uploads/logo-3d-png/3d-logo-design-company-10.PNG"/>Management System</a>
+                <a class="navbar-brand text_color nav-link" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo_" src="https://freepikpsd.com/media/2019/10/shell-petrol-logo-png-Transparent-Images.png" />&nbsp;Management System</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,12 +21,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text_color" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="fa fa-cog"></i>&nbsp;Settings
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa fa-unlock"></i>&nbsp;log in</a>
+                            <a class="nav-link text-light text_color" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <i class="fa fa-power-off"></i>&nbsp;log Out
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -40,8 +42,10 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - TASK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center text-yellow" style="        color: #a93226
+">
+            &copy;@DateTime.Now.Year <a asp-area="" asp-controller="Home" style="        color: #a93226
+" asp-action="Privacy">Sales Management System</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

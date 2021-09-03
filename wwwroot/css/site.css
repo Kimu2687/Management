@@ -6,6 +6,11 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
+@font-face {
+    font-family: "best";
+    src: url(/fonts/best.ttf);
+    /*  src: url("CustomFont.woff") format("woff"), url("CustomFont.otf") format("opentype"), url("CustomFont.svg#filename") format("svg");*/
+}
 
 /* Provide sufficient contrast against white background */
 a {
@@ -41,26 +46,90 @@ html {
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
-
+.text_color_red {
+    color: #a93226;
+}
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+.home_image{
+    height:150px;
+}
+
+.form-control {
+    border: 1px #A93226 solid !important;
+    border-radius:20px;
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
+.bg-custome {
+    background-color: #A93226 !important;
+    color: #E67E22 !important;
+}
+.text_yellow {
+    /*home_title*/
+    color: #a93226 !important;
+}
+.text_color {
+    color: #F4D03F !important;
+    font-size:12px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+}
+.card_label{
 
+}
+.card_label:hover{
+    font-size:15px;
+}
+.text_color_cards {
+    color: #F4D03F !important;
+    font-size: 30px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+}
+    .text_color_cards:hover{
+        font-size:40px;
+    }
+
+    .home_title {
+        font-size: 22px;
+        color: #a93226;
+        -webkit-transition: font-size .5s ease;
+        -moz-transition: font-size .5s ease;
+        -o-transition: font-size .5s ease;
+        transition: font-size .5s ease;
+    }
+ home_title:hover {
+    color:#a93226 !important;
+    font-size:30px;
+    
+}
+.text_color:hover{
+    font-size:17px;
+    color:ghostwhite !important;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
-
+body,h1, h2, h3, h4, h5, h6, p, snall, b, strong, span, a, li, ul{
+    font-family:best;
+}
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    font-family: best;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #FEF5E7;
 }
 .footer {
   position: absolute;
@@ -68,4 +137,47 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+.logo_ {
+    height: 30px;
+    width: 30px;
+}
+.group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+label {
+    color: #15BADF;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+}
+.custome_input {
+    /*border: 1px solid #15BADF;*/
+}
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.highlight {
+    background-color: #ff007a;
+    width: 100%;
+}
+
+.bar:before {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #15BADf;
+    transition: 300ms ease all;
+    left: 0%;
 }

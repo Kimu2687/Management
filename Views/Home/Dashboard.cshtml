@@ -1,0 +1,272 @@
+﻿
+
+
+<div class="main-section ">
+    <div class="row " style="margin-top:70px;">
+        <div class="col-lg-12">
+            <div class="w3-panel w3-card-4 p-10 shaddo">
+                <table>
+                    <tr>
+                        <td style="border-right:2px solid grey; margin:10px;">&nbsp;&nbsp; <img src="https://icon-library.com/images/attendance-icon/attendance-icon-7.jpg" style="height:50px;margin:15px;" /> </td>
+                        <td>
+
+                            <table>
+                                <tr>
+                                    <td colspan="6" class="text-left"><p style="margin-left:10px;">Admin &nbsp;&nbsp;|&nbsp;&nbsp;@ViewBag.name</p></td>
+                                </tr>
+                                <tr>
+
+                                    <td> <form asp-action="create" asp-controller="Course_reg"><button class="btn btn-light btn-sm" action><i class="fa fa-plus-circle"></i>&nbsp;Add new course</button></form></td>
+                                    <td> <form asp-action="create"><button class="btn btn-light btn-sm"><i class="fa fa-plus-circle"></i>&nbsp;Add staff</button></form></td>
+                                    <td>
+                                        <form asp-action="log_out">
+                                            <button class="btn btn-light btn-sm">
+                                                <i class="fa fa-power-off"></i>&nbsp;Log Out
+                                            </button>
+                                        </form>
+                                    </td>
+
+
+                                </tr>
+
+                            </table>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-4">
+
+
+            <div class="dashbord">
+                <div class="icon-section">
+                    <i class="fa fa-th-list" aria-hidden="true"></i><br>
+                    <small class="card_label">1 Litre carton</small>
+                    <p>@ViewBag.Courses</p>
+                    <h5 class="font-weight-bold text_color_cards">Ksh. 6/=</h5>
+
+                </div>
+                <div class="detail-section">
+
+                    <a class="btn btn-light round_b" asp-action="create" asp-controller="Course_reg">Go to courses &nbsp;<i class="fa fa-angle-double-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="dashbord ">
+                <div class="icon-section">
+                    <i class="fa fa-user" aria-hidden="true"></i><br>
+                    <small>Registered students</small>
+                    <p>@ViewBag.Students</p>
+                </div>
+                <div class="detail-section">
+                    <a class="btn btn-light round_b" asp-action="create" asp-controller="Students_reg">Manage students&nbsp;<i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div> <div class="col-lg-4">
+            <div class="dashbord ">
+                <div class="icon-section">
+                    <i class="fa fa-user" aria-hidden="true"></i><br>
+                    <small>Registered staff</small>
+                    <p>@ViewBag.Staff</p>
+                </div>
+                <div class="detail-section">
+                    <a class="btn btn-light round_b" asp-action="index" asp-controller="staff_log_in">Manage staff&nbsp;<i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="dashbord dashbord-green">
+                <div class="icon-section">
+
+                    <i class="fa fa-file-text"></i><br>
+                    <small>Take Attendance</small>
+                    <p>@ViewBag.Staff</p>
+                </div>
+                <div class="detail-section">
+                    <a class="btn btn-light round_b text-dark" data-target="#receipt_mod" data-toggle="modal">Manage attendance&nbsp;<i class="fa fa-angle-double-right"></i></a>
+
+                </div>
+            </div>
+        </div>  <div class="col-lg-6">
+            <div class="dashbord dashbord-green">
+                <div class="icon-section">
+
+                    <i class="fa fa-file-text"></i><br>
+                    <small>Attendance report</small>
+
+                    <p>.</p>
+                </div>
+                <div class="detail-section">
+                    <a class="btn btn-light round_b text-dark" data-toggle="modal" data-target="#att_r">Go to report&nbsp;<i class="fa fa-angle-double-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="receipt_mod" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content w3-card">
+           
+            <div class="modal-header  p-2  ">
+                <img src="~/images/logo_1.png"  class="logo" />&nbsp;<b>Enter class details &nbsp;</b>
+            </div>
+            <div class="modal-body  p-2  text-center">
+                <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+                    <div class="form-group">
+                        @*<select class="form-control" name="course" asp-items="@(new SelectList(@ViewBag.Drop_sulier,"id","Course"))"></select>*@
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="year">
+                            <option>--Select Year--</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+                            <option value="Fourth">Fourth</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="semester">
+                            <option>--Select Semester--</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="week">
+                            <option>--Select week--</option>
+                            <option value="Week 1">Week 1</option>
+                            <option value="Week 2">Week 2</option>
+                            <option value="Week 3">Week 3</option>
+                            <option value="Week 4">Week 4</option>
+                            <option value="Week 5">Week 5</option>
+                            <option value="Week 6">Week 6</option>
+                            <option value="Week 7">Week 7</option>
+                            <option value="Week 8">Week 8</option>
+                            <option value="Week 9">Week 9</option>
+                            <option value="Week 10">Week 10</option>
+                            <option value="Week 11">Week 11</option>
+                            <option value="Week 12">Week 12</option>
+                            <option value="Week 13">Week 13</option>
+                            <option value="Week 14">Week 14</option>
+                            <option value="Week 15">Week 15</option>
+                            <option value="Week 16">Week 16</option>
+                            <option value="Week 17">Week 17</option>
+                            <option value="Week 18">Week 18</option>
+                            <option value="Week 19">Week 19</option>
+                            <option value="Week 20">Week 20</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-white text-dark shaddo">Next</button>
+                        </div>
+                </form>
+            </div>
+          
+            <div class="modal-body ">
+                <div class="row">
+                    <div class="col-lg-12 text-right">
+                        <button type="button"  class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
+                    </div>            <!-- Modal Header -->
+                </div>            <!-- Modal Header -->
+            </div>
+        </div>
+    </div>
+</div><div class="modal fade" id="att_r" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content w3-card">
+           
+            <div class="modal-header  p-2  ">
+                <img src="~/images/logo_1.png"  class="logo" />&nbsp;<b>Which report to access? &nbsp;</b>
+            </div>
+            <div class="modal-body  p-2  text-center">
+                <form asp-action="attendance_report" asp-controller="staff_log_in" id="modify_form">
+                    <div class="form-group">
+                       @* <select class="form-control" name="course" asp-items="@(new SelectList(@ViewBag.Drop_sulier,"id","Course"))"></select>*@
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="year">
+                            <option>--Select Year--</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+                            <option value="Fourth">Fourth</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="semester">
+                            <option>--Select Semester--</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="week">
+                            <option>--Select week--</option>
+                            <option value="Week 1">Week 1</option>
+                            <option value="Week 2">Week 2</option>
+                            <option value="Week 3">Week 3</option>
+                            <option value="Week 4">Week 4</option>
+                            <option value="Week 5">Week 5</option>
+                            <option value="Week 6">Week 6</option>
+                            <option value="Week 7">Week 7</option>
+                            <option value="Week 8">Week 8</option>
+                            <option value="Week 9">Week 9</option>
+                            <option value="Week 10">Week 10</option>
+                            <option value="Week 11">Week 11</option>
+                            <option value="Week 12">Week 12</option>
+                            <option value="Week 13">Week 13</option>
+                            <option value="Week 14">Week 14</option>
+                            <option value="Week 15">Week 15</option>
+                            <option value="Week 16">Week 16</option>
+                            <option value="Week 17">Week 17</option>
+                            <option value="Week 18">Week 18</option>
+                            <option value="Week 19">Week 19</option>
+                            <option value="Week 20">Week 20</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-white text-dark shaddo">Next</button>
+                        </div>
+                </form>
+            </div>
+          
+            <div class="modal-body ">
+                <div class="row">
+                    <div class="col-lg-12 text-right">
+                        <button type="button"  class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
+                    </div>            <!-- Modal Header -->
+                </div>            <!-- Modal Header -->
+            </div>
+        </div>
+    </div>
+</div>
