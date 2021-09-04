@@ -226,7 +226,7 @@ body {
     margin-bottom: 20px;
 }
 
-label {
+/*label {
     color: #15BADF;
     font-size: 16px;
     font-weight: normal;
@@ -236,9 +236,9 @@ label {
     top: 10px;
     transition: 300ms ease all;
 }
-.custome_input {
+.custome_input {*/
     /*border: 1px solid #15BADF;*/
-}
+/*}
 .bar {
     position: relative;
     display: block;
@@ -259,4 +259,4 @@ label {
     background: #15BADf;
     transition: 300ms ease all;
     left: 0%;
-}
+}*/
