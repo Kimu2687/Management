@@ -19,6 +19,7 @@
                                 </tr>
                                 <tr class="p-4">
 
+                                    <td><a   asp-action="Index" asp-controller="System_users" class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;System users</a></td>
                                     <td><button data-toggle="modal" data-target="#manage_cartons" class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Add or restock cartons</button></td>
                                     <td><button data-toggle="modal" data-target="#sell_item" class="btn button_custome "><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>&nbsp;Sell carton</button></td>
                                     <td>  <a asp-action="Close_month"  class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Close month</a></td>
@@ -51,9 +52,9 @@
             <div class="dashbord">
                 <div class="icon-section">
                     <i class="fa fa-square-o" aria-hidden="true"></i><br />
-                    <h6 class="card_label">1 Litre carton</h6>
-                    <p>@ViewBag.Courses</p>
-                    <h5 class="font-weight-bold text_color_cards">6o</h5>
+                    <h6 class="card_label">1 Litre bottles</h6>
+                    <p></p>
+                    <h5 class="font-weight-bold text_color_cards">@ViewBag.one_litre</h5>
 
                 </div>
                 <div class="detail-section">
@@ -70,8 +71,8 @@
             <div class="dashbord">
                 <div class="icon-section">
                     <i class="fa fa-square" aria-hidden="true"></i><br />
-                    <h6 class="card_label">5 Litre carton</h6>
-                    <p>@ViewBag.Courses</p>
+                    <h6 class="card_label">5 Litre bottles</h6>
+                    <p>@ViewBag.five_litre</p>
                     <h5 class="font-weight-bold text_color_cards">72</h5>
 
                 </div>
@@ -158,78 +159,14 @@
         <div class="modal-content w3-card">
 
             <div class="modal-header  p-2  custome_header color_custome">
-                <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Ard or restock cartons&nbsp;</b>
+                <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Cartons&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
-
-
-
-                <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
-                    <table class="w-100">
-                        <tr>
-                            <th colspan="2">No cartons have been added,Please add cartons</th>
-                        </tr>
-                        <tr>
-                            <td class="m-5">Cartons category:</td>
-                            <td class="m-5">
-                                <select class="form-control">
-                                    <option value="1 Litre">1 Litre</option>
-                                    <option value="5 Litres">5 Litres</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="m-5">Buying Price/bottle:</td>
-                            <td class="m-5">
-                                <input class="form-control" type="text" name="price_il" required placeholder="Enter buying price here" />
-
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="m-5">No of bottles:</td>
-                            <td class="m-5">
-                                <input class="form-control" type="text" name="price_il" required placeholder="Number of bottles" />
-
-
-
-                            </td>
-                        </tr> <tr>
-                            <td class="m-5">No. of bottles per carton:</td>
-                            <td class="m-5">
-                                <input class="form-control" type="text" name="price_il" required placeholder="Enter number of bottles per carton" />
-
-
-
-                            </td>
-                        </tr>
-                          <tr>
-                            <td class="m-5">Selling Price/Bottle:</td>
-                            <td class="m-5">
-                                <input class="form-control" type="text" name="price_il" required placeholder="Enter selling price per bottle here" />
-
-
-
-                            </td>
-                        </tr>
-
-
-
-                    </table>
-                    <table class="w-100">
-                        <tr>
-                            <th colspan="2">
-                                <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Submit records</button>
-                            </th>
-
-                        </tr>
+                <a asp-action="Create" asp-controller="Cartons" class="btn button_custome mt-3 " action><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add records</a>
 
 
 
 
-                    </table>
-                </form>
                 <table class="w-100 mt-3">
                     <tr>
                         <th>Bottle type</th>
@@ -239,26 +176,30 @@
                         <th>No of Bottles/Carton</th>
 
                         <th>Actions</th>
-                       
+
 
                     </tr>
+                    @foreach (var x in ViewBag.cartons)
+                    {
                     <tr>
-                        <td>1 Litre</td>
-                        <td>6</td>
-                        <td>30</td>
-                        <td>30000</td>
-                        <td>10</td>
+                        <td>@x.Carton_category</td>
+                        <td>@x.Buying_price</td>
+                        <td>@x.Selling_price</td>
+                        <td>@x.No_of_bottle</td>
+                        <td>@x.bottle_per_carton</td>
 
 
                         <td colspan="4">
-                            <a class="btn-sm btn btn-outline-success">Modify</a>|
-                            <a class="btn-sm btn btn-outline-danger">Delete</a>
+                            <a asp-route-id="@x.id" asp-controller="Cartons" asp-action="Edit"  class="btn-sm btn btn-outline-success">Modify</a>|
+                            <a asp-route-id="@x.id" asp-controller="Cartons" asp-action="Delete" class="btn-sm btn btn-outline-danger">Delete</a>
                             @*<a class="btn-sm btn btn-outline-success">Add &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a>*@
 
 
 
                         </td>
-                    </tr>  <tr>
+                    </tr>
+                    }
+                    <tr>
                         <td>5 Litre</td>
                         <td>9</td>
                         <td>Ksh.150</td>
@@ -268,8 +209,10 @@
 
                         <td colspan="4">
                             <a class="btn-sm btn btn-outline-success">Modify</a>|
+
+                            
                             <a class="btn-sm btn btn-outline-danger">Delete</a>|
-                            <a class="btn-sm btn btn-outline-success">Add &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                         
 
 
 
@@ -368,7 +311,7 @@
                         <table class="w-100">
                           
                             <tr>
-                                <th>Bill</th>
+                                <th>Select expense</th>
                                 <td>
                                     <select class="form-control">
                                         <option value="Water">
@@ -377,6 +320,8 @@
                                         <option value="Electricity">
                                             Electricity
                                         </option>
+                                   
+                                       
 
                                     </select>
 

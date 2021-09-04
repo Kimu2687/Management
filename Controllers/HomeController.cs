@@ -13,9 +13,12 @@ namespace TASK.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly Database_Context _context;
+
+        public HomeController(ILogger<HomeController> logger, Database_Context context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Close_month()
@@ -37,6 +40,11 @@ namespace TASK.Controllers
 
         public IActionResult Dashboard()
         {
+            //LETS BIND THE REQUIRED RECORDS
+            ViewBag.cartons = _context.Cartons.ToList();
+            ViewBag.one_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "1 Litre").No_of_bottle;
+            ViewBag.five_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "5 Litres").No_of_bottle;
+         
             ViewBag.count_items = 1;
             return View();
         }public IActionResult Privacy()
