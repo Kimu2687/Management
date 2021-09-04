@@ -86,16 +86,9 @@ namespace TASK.Controllers
             _context.SaveChanges();
 
 
-            ////LETS RECORD THE SALES
-            //Cartons_sold C_S = new Cartons_sold();
-            //C_S.Cartons_sold_ = quantity_five;
-            //C_S.Carton_category = category;
-            //C_S.Date = DateTime.Now.ToString("dd/MM/yyyy");
-            //C_S.Total = P_QUANTITY.Selling_price * quantity_five;
-            //_context.Add(C_S);
-            //_context.SaveChanges();
+          
 
-            //LETS UPDATE THE DASHBOARD WITH THE NEW 
+         
 
             //LETS UPDATE THE EXPENSE(TRANSPORT)
             Expenses EX = new Expenses();
@@ -131,6 +124,50 @@ namespace TASK.Controllers
         }public IActionResult Privacy()
         {
             return View();
+        }
+        
+        public IActionResult sell_item(string carton_,int carton_sold)
+        {
+            //LETS KEEP THE RECORDS OF THE SALES
+            var GET_FIELDS = _context.Cartons.FirstOrDefault(X => X.Carton_category == carton_);
+
+            //LETS CHECK IF REMAINIG STOCK IS NEGATIVE
+
+            int BOTTLES_IN_STOCK = GET_FIELDS.No_of_bottle;
+            int NEW_STOCK = BOTTLES_IN_STOCK - carton_sold;
+            //--------------------------------------------------------------------------------------------------------------------------------------------
+            if (NEW_STOCK < 0)
+            {
+                swal("Qntyt Sold: "+carton_sold,  "You have entered an invalid quantity", "error");
+            }
+            else
+            {
+                //NOW LETS PDATE THE REMAINING BOTTLES BY SUBTRACTING SOLD BOTTLES FROM INITIAL STOCK
+                Cartons_sold C_S = new Cartons_sold();
+                C_S.Cartons_sold_ = carton_sold;
+                C_S.Carton_category = carton_;
+                C_S.Date = DateTime.Now.ToString("dd/MM/yyyy");
+                C_S.Total = GET_FIELDS.Selling_price * carton_sold;
+                _context.Add(C_S);
+                _context.SaveChanges();
+
+
+
+                //LETS GET NUMBER OF BOTTLES SOLD BY CONVERTING CARTONS TO BOTTLES
+                decimal PRICE_PER_CARTON = GET_FIELDS.Selling_price;
+                int BOTTLES_PER_CARTON = GET_FIELDS.bottle_per_carton;
+                int SOLD_BOTTLES = carton_sold / BOTTLES_PER_CARTON;
+
+
+
+                //LETS UPDATE
+                GET_FIELDS.No_of_bottle = NEW_STOCK;
+                _context.Entry(GET_FIELDS).State = EntityState.Modified;
+                _context.SaveChanges();
+                swal("Success!", carton_sold + " Cartons of " + carton_ + " has been sold. New stock is: " + NEW_STOCK, "success");
+
+            }
+            return Redirect("~/Home/Dashboard");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

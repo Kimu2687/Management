@@ -54,7 +54,7 @@
                     <i class="fa fa-square-o" aria-hidden="true"></i><br />
                     <h6 class="card_label">1 Litre bottles</h6>
                     <p></p>
-                    <h5 class="font-weight-bold text_color_cards">@ViewBag.one_litre</h5>
+                    <h5 class="font-weight-bold text_color_cards" id="one_litres_label">@ViewBag.one_litre</h5>
 
                 </div>
                 <div class="detail-section">
@@ -126,7 +126,7 @@
 
                 </div>
                 <div class="detail-section">
-                    <a class="btn btn-light round_b button_cards_r" data-target="#expenses" data-toggle="modal" style="color: #149077
+                    <a asp-action="Create" asp-controller="Expenses" class="btn btn-light round_b button_cards_r" style="color: #149077
 " ><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Go to Expenses&nbsp;</a>
 
 
@@ -272,19 +272,20 @@
                 <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Cartons sold&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
-                <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+                <form asp-action="sell_item" asp-controller="home" id="modify_form">
 
                     <div class="form-group">
                         Select carton
 
-                        <select class="form-control">
+                        <select class="form-control" name="carton_">
+                            <option value="1 Litre">--Select carton type--</option>
                             <option value="1 Litre">1 Litre</option>
                             <option value="5 Litres">5 Litres</option>
                         </select>
                     </div>
                     <div class="form-group">
                         Cartons sold
-                        <input class="form-control" name="price_il" required placeholder="Enter cartons sold" />
+                        <input class="form-control" name="carton_sold" required placeholder="Enter cartons sold" />
                     </div>
                     <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Submit</button>
                 </form>
@@ -307,7 +308,7 @@
                     <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Manage expenses&nbsp;</b>
                 </div>
                 <div class="modal-body  p-2  text-center">
-                    <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+                    <form  id="modify_form">
                         <table class="w-100">
                           
                             <tr>
@@ -332,7 +333,7 @@
                                 <th>Total</th>
 
                                 <td>
-                                    <input class="form-control" name="price_il" required placeholder="Total" />
+                                    <input id class="form-control" name="price_il" required placeholder="Total" />
                                 </td>
                                 
                             </tr>
@@ -672,14 +673,22 @@
                 type: "POST",
                 url: "/home/add_bottles",
                 data: {
-                    "transport": transport, "quantity_five": quantity, "Category": category
+                    "transport": transport, "quantity": quantity, "Category": category
                 },
                 success: function (response) {
 
+                    if (category == '5 Litres') {
 
-                    document.getElementById("error_5").style.color = "Green";
-                    $("#error_5").text('Stock added successfully!');
-                    $("#five_litres_label").text(response.response_message);
+                        document.getElementById("error_5").style.color = "Green";
+                        $("#error_5").text('Stock added successfully!');
+                        $("#five_litres_label").text(response.response_message);
+                    }
+                    else {
+                        
+                        $("#error_1").text('Stock added successfully!');
+                        $("#one_litres_label").text(response.response_message);
+                    }
+                   
 
 
 
