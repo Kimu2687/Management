@@ -8,12 +8,15 @@
     <link href="~/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" asp-append-version="true" rel="stylesheet" />
     <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
     <link href="~/css/dashboard_cards.css" asp-append-version="true" rel="stylesheet" />
+    <script src="~/css/sweet_alert/sweetalert.js" asp-append-version="true"></script>
+
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm  navbar-toggleable-sm bg-dark  navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text_color_nav nav-link"  asp-action="Dashboard"><img class="logo_" src="https://freepikpsd.com/media/2019/10/shell-petrol-logo-png-Transparent-Images.png" />&nbsp;&nbsp;Management System</a>
+                <a class="navbar-brand text_color_nav nav-link" asp-action="Dashboard"><img class="logo_" src="https://freepikpsd.com/media/2019/10/shell-petrol-logo-png-Transparent-Images.png" />&nbsp;&nbsp;Management System</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,10 +24,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         @*<li class="nav-item">
-                            <a class="nav-link text_color_nav" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="fa fa-cog"></i>&nbsp;Settings
-                            </a>
-                        </li>*@
+                                <a class="nav-link text_color_nav" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="fa fa-cog"></i>&nbsp;Settings
+                                </a>
+                            </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-light text_color_nav" asp-area="" asp-controller="Home" asp-action="Privacy">
                                 <i class="fa fa-power-off"></i>&nbsp;log Out
@@ -52,5 +55,24 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+    @*GLOBAL JAVASCRIPT*@
+    <script>
+
+    $(document).ready(function () {
+    var msg = @((TempData["msg"] != null).ToString().ToLower());
+    if (msg == true) {
+    swal("@TempData["msg_header"]", "@TempData["msg"]", "@TempData["msg_type"]");
+
+    }
+    else {
+    //swal("Warning", "Please enter meter reading before proceeding", "warning");
+    }
+
+
+        //swal("","","");
+    });
+        $('.b_hide').hide();
+    </script>
 </body>
 </html>
