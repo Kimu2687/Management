@@ -8,7 +8,6 @@
     <link href="~/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" asp-append-version="true" rel="stylesheet" />
     <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
     <link href="~/css/dashboard_cards.css" asp-append-version="true" rel="stylesheet" />
-    <script src="~/css/sweet_alert/sweetalert.js" asp-append-version="true"></script>
 
 
 </head>
@@ -54,15 +53,20 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/css/sweet_alert/sweetalert.js" asp-append-version="true"></script>
+    @RenderSection("scripts_1", required: false)
+
     @RenderSection("Scripts", required: false)
 
     @*GLOBAL JAVASCRIPT*@
     <script>
 
+
     $(document).ready(function () {
     var msg = @((TempData["msg"] != null).ToString().ToLower());
     if (msg == true) {
     swal("@TempData["msg_header"]", "@TempData["msg"]", "@TempData["msg_type"]");
+
 
     }
     else {
@@ -74,5 +78,6 @@
     });
         $('.b_hide').hide();
     </script>
+
 </body>
 </html>

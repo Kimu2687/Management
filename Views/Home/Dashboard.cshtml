@@ -73,7 +73,7 @@
                     <i class="fa fa-square" aria-hidden="true"></i><br />
                     <h6 class="card_label">5 Litre bottles</h6>
                     <p></p>
-                    <h5 class="font-weight-bold text_color_cards">@ViewBag.five_litre</h5>
+                    <h5 class="font-weight-bold text_color_cards" id="five_litres_label">@ViewBag.five_litre</h5>
 
                 </div>
                 <div class="detail-section">
@@ -241,18 +241,18 @@
                 <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Add 5 litres bottles&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
-                <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+              
                     <div class="form-group">
                         No. of bottles added
-                        <input class="form-control" name="price_il" required placeholder="Enter quantity here" />
+                        <input class="form-control" id="quantity_five" required placeholder="Enter quantity here" />
                     </div>
                     <div class="form-group">
                        Transport cost
-                        <input class="form-control" name="price_il" required placeholder="Enter transport cost here" />
+                        <input class="form-control" id="transport_five" required placeholder="Enter transport cost here" />
                     </div>
                    
-                    <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update stock</button>
-                </form>
+                    <button class="btn button_custome mt-3" id="submit_five" action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update stock</button><br />
+               <label id="error_5" class="text-danger"></label>
             <div class="modal-body ">
                 <div class="row">
                     <div class="col-lg-12 text-right">
@@ -396,7 +396,7 @@
                 <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Change Employees Details&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
-                <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+                @*<form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">*@
                     <table class="w-100">
                         <tr>
                             <th colspan="2">Industry Employees</th>
@@ -404,7 +404,7 @@
                         <tr>
                             <td>No. of Employees:</td>
                             <td>
-                                <input class="form-control" id="industry_em" required placeholder="Enter number of employees here" />
+                                <input class="form-control" id="industry_em" value="@ViewBag.industry_empl" required placeholder="Enter number of employees here" />
                             </td>
 
 
@@ -419,7 +419,7 @@
                         <tr>
                             <td>No. of Employees:</td>
                             <td>
-                                <input class="form-control" id="num_of_emp" required placeholder="Enter number of employees here" />
+                                <input class="form-control" id="supply_empl"  value="@ViewBag.supply_empl" required placeholder="Enter number of employees here" />
                             </td>
                         </tr>
 
@@ -439,7 +439,7 @@
                             <td>
                                 
 
-                                <input class="form-control" name="price_il" required placeholder="Enter new salary here" />
+                                <input class="form-control" id="employee_sal" value="@ViewBag.salary" required placeholder="Enter new salary here" />
 
 
                             </td>
@@ -451,7 +451,8 @@
                     <table class="w-100">
                         <tr>
                             <th colspan="2">
-                                <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update price</button>
+                                <p class="text-danger" id="error"></p>
+                                <button class="btn button_custome mt-3" id="update_price"  action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update price</button>
                             </th>
 
                         </tr>
@@ -463,7 +464,7 @@
 
                    
 
-                </form>
+                @*</form>*@
             <div class="modal-body ">
                 <div class="row">
                     <div class="col-lg-12 text-right">
@@ -484,18 +485,19 @@
                 <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Add 1 Litre bottle to stock&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
-                <form asp-action="change_1l" asp-controller="staff_log_in" id="modify_form">
+                @*<form asp-action="change_1l" asp-controller="staff_log_in" id="modify_form">*@
                     <div class="form-group">
                         No. of bottles added
 
-                        <input class="form-control" name="price_il" required placeholder="Enter quantity added here" />
+                        <input class="form-control" id="add_one_litre" required placeholder="Enter quantity added here" />
                         </div>
                         <div class="form-group">
                             Transport cost
-                            <input class="form-control" name="price_il" required placeholder="Enter transport cost here" />
+                            <input class="form-control" id="transport_one" required placeholder="Enter transport cost here" />
                         </div>
-                        <button class="btn button_custome mt-3 " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Update stock</button>
-                </form>
+                        <button class="btn button_custome mt-3 "  id="submit_one"  action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Update stock</button> <br />
+                    <label id="error_1" class="text-danger"></label>
+                @*</form>*@
             <div class="modal-body ">
                 <div class="row">
                     <div class="col-lg-12 text-right">
@@ -588,7 +590,122 @@
 </div>
 @section scripts_1{ 
 <script>
+   
+    $(document).ready(function () {
 
+        //LETS INSERT OR UPDATE EMPLOYERS DETAILS
+
+        $('#update_price').click(function () {
+            if ($("#industry_em").val() == '' || $("#supply_empl").val() == '' || $("#employee_sal").val() == '') {
+                $("#error").text("Please fill every field before proceeding");
+
+
+            }
+            else {
+                const industry_em = document.getElementById("industry_em").value;
+                const supply_empl = document.getElementById("supply_empl").value;
+                const employee_sal = document.getElementById("employee_sal").value;
+                $.ajax({
+                    type: "POST",
+                    url: "/home/insert_employees",
+                    data: {
+                        "Industry_employees": industry_em, "Supply_employees": supply_empl, "Salary": employee_sal
+                    },
+                    success: function (response) {
+
+
+                        document.getElementById("error").style.color = "Green";
+                        $("#error").text(response.response_message);
+
+
+
+                    },
+                    failure: function (response) {
+
+
+
+
+                    },
+                    error: function (response) {
+
+
+                    }
+
+
+
+
+
+                });
+            }
+        });
+
+        //LETS UPDATE 5 LITRES BOTTLE
+        $('#submit_five').click(function () {
+            if ($("#transport_five").val() == '' || $("#quantity_five").val() == '') {
+                $("#error_5").text("Please fill every field before proceeding");
+            }
+            else {
+                const transport_five = document.getElementById("transport_five").value;
+                const quantity_five = document.getElementById("quantity_five").value;
+                add_bottles('5 Litres', transport_five, quantity_five)
+            }
+        });
+        //LETS UPDATE 1 LITRES BOTTLE
+        $('#submit_one').click(function () {
+            if ($("#add_one_litre").val() == '' || $("#transport_one").val() == '') {
+                $("#error_1").text("Please fill every field before proceeding");
+            }
+            else {
+                const add_one_litre = document.getElementById("add_one_litre").value;
+                const transport_one = document.getElementById("transport_one").value;
+                add_bottles('1 Litre', transport_one, add_one_litre)
+               
+            }
+        });
+
+
+        //LETS ADD FIVE LITRES BOTTLE
+        function add_bottles(category, transport, quantity) {
+
+          
+            $.ajax({
+                type: "POST",
+                url: "/home/add_bottles",
+                data: {
+                    "transport": transport, "quantity_five": quantity, "Category": category
+                },
+                success: function (response) {
+
+
+                    document.getElementById("error_5").style.color = "Green";
+                    $("#error_5").text('Stock added successfully!');
+                    $("#five_litres_label").text(response.response_message);
+
+
+
+
+                },
+                failure: function (response) {
+                    $("#error_5").text(response.response_message);
+
+
+
+
+                },
+                error: function (response) {
+                    $("#error_5").text(response);
+
+
+                }
+
+
+
+
+
+            });
+        }
+    });
+      
 </script>
 
 }
