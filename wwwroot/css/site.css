@@ -74,33 +74,75 @@ button.accept-policy {
     color: #a93226 !important;
 }
 .text_color {
-    color: #F4D03F !important;
-    font-size:12px;
+    color: #a93226 !important;
+    font-size: 12px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+    font-size: 15px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.card_label {
     -webkit-transition: font-size .5s ease;
     -moz-transition: font-size .5s ease;
     -o-transition: font-size .5s ease;
     transition: font-size .5s ease;
 }
-.card_label{
+    .card_label:hover {
+        font-size: 30px;
+        /*color: #F4D03F !important;*/
+    }
+.button_custome {
+    background-color: #a93226 !important;
+    border-radius: 10px !important;
+    color: #fdca01 !important;
+    height: auto !important;
+    width: auto !important;
+    font-size: 12px !important;
+    transition: height,width,font-size,margin,0.5s;
+}.button_custome:hover {
+    background-color: #a93226!important;
+    border-radius: 10px!important;
+    color: #fdca01!important;
+    margin-right:100px;
+    font-size:17px!important;
+    height:30px;
+    width:100px;
 
 }
-.card_label:hover{
-    font-size:15px;
+.button_cards {
+    background-color: #922B21 !important;
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-size:12px !important;
+    transition: font-size .5s ease,background-color,box-shadow 1s;
 }
+    .button_cards:hover {
+        background-color: #7B241C !important;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: none;
+    }  .button_cards:active {
+        background-color: #7B241C !important;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: none;
+        transform:translateX(60px),translateY(60px)
+    }
 .text_color_cards {
     color: #F4D03F !important;
     font-size: 30px;
     -webkit-transition: font-size .5s ease;
     -moz-transition: font-size .5s ease;
     -o-transition: font-size .5s ease;
-    transition: font-size .5s ease;
+    transition: font-size .5s ease,background-color 2s;
 }
-    .text_color_cards:hover{
-        font-size:40px;
+    .text_color_cards:hover {
+        font-size: 50px;
+        background-color: #a93226;
     }
 
     .home_title {
-        font-size: 22px;
+        font-size: 35px;
         color: #a93226;
         -webkit-transition: font-size .5s ease;
         -moz-transition: font-size .5s ease;
@@ -112,9 +154,21 @@ button.accept-policy {
     font-size:30px;
     
 }
-.text_color:hover{
-    font-size:17px;
-    color:ghostwhite !important;
+.text_color_nav {
+    color: #fbb605 !important;
+    font-size: 12px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+    font-size: 15px;
+}
+    .text_color_nav:hover {
+        font-size: 17px;
+        color: #fbb605 !important;
+    }.text_color:hover {
+    font-size: 17px;
+    color: #a93226 !important;
 }
 /* Sticky footer styles
 -------------------------------------------------- */

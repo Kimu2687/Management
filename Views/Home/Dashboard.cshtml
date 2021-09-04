@@ -2,22 +2,25 @@
 
 
 <div class="main-section ">
-    <div class="row " style="margin-top:70px;">
+    <div class="row " style="margin-top:30px;">
         <div class="col-lg-12">
-            <div class="w3-panel w3-card-4 p-10 shaddo">
+            <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text_color">
                 <table>
                     <tr>
-                        <td style="border-right:2px solid grey; margin:10px;">&nbsp;&nbsp; <img src="https://icon-library.com/images/attendance-icon/attendance-icon-7.jpg" style="height:50px;margin:15px;" /> </td>
+                        <td style="        border-right: 2px solid #a93226;
+        margin: 10px;">
+                            &nbsp;&nbsp; <img src="/images/carton (2).png" style="height:50px;margin:15px;" />
+                        </td>
                         <td>
 
                             <table>
                                 <tr>
-                                    <td colspan="6" class="text-left"><p style="margin-left:10px;">Admin &nbsp;&nbsp;|&nbsp;&nbsp;@ViewBag.name</p></td>
+                                    <td colspan="6" class="text-left"><p style="margin-left:10px;">Administrator &nbsp;&nbsp;|&nbsp;&nbsp;@ViewBag.name Brian Kimutai</p></td>
                                 </tr>
                                 <tr>
 
-                                    <td> <form asp-action="create" asp-controller="Course_reg"><button class="btn btn-light btn-sm" action><i class="fa fa-plus-circle"></i>&nbsp;Add new course</button></form></td>
-                                    <td> <form asp-action="create"><button class="btn btn-light btn-sm"><i class="fa fa-plus-circle"></i>&nbsp;Add staff</button></form></td>
+                                    <td> <form asp-action="create" asp-controller="Course_reg"><button class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Add new cartons</button></form></td>
+                                    <td> <form asp-action="create"><button class="btn button_custome "><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>&nbsp;Sell carton</button></form></td>
                                     <td>
                                         <form asp-action="log_out">
                                             <button class="btn btn-light btn-sm">
@@ -45,40 +48,68 @@
     <div class="row">
 
         <div class="col-lg-4">
+            <img scr="" class="card_icon" /><br>
 
 
             <div class="dashbord">
                 <div class="icon-section">
-                    <i class="fa fa-th-list" aria-hidden="true"></i><br>
-                    <small class="card_label">1 Litre carton</small>
+                    <i class="fa fa-square-o" aria-hidden="true"></i><br />
+                    <h6 class="card_label">1 Litre carton</h6>
                     <p>@ViewBag.Courses</p>
                     <h5 class="font-weight-bold text_color_cards">Ksh. 6/=</h5>
 
                 </div>
                 <div class="detail-section">
 
-                    <a class="btn btn-light round_b" asp-action="create" asp-controller="Course_reg">Go to courses &nbsp;<i class="fa fa-angle-double-right"></i></a>
+                    <a class="btn btn-light round_b button_cards" asp-action="create" asp-controller="Course_reg">Change price &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="dashbord ">
+            <img scr="" class="card_icon" /><br>
+
+
+            <div class="dashbord">
                 <div class="icon-section">
-                    <i class="fa fa-user" aria-hidden="true"></i><br>
-                    <small>Registered students</small>
-                    <p>@ViewBag.Students</p>
+                    <i class="fa fa-square" aria-hidden="true"></i><br />
+                    <h6 class="card_label">5 Litre carton</h6>
+                    <p>@ViewBag.Courses</p>
+                    <h5 class="font-weight-bold text_color_cards">Ksh. 6/=</h5>
+
                 </div>
                 <div class="detail-section">
-                    <a class="btn btn-light round_b" asp-action="create" asp-controller="Students_reg">Manage students&nbsp;<i class="fa fa-angle-double-right"></i></a>
+
+                    <a class="btn btn-light round_b button_cards" asp-action="create" asp-controller="Course_reg">Change price &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                </div>
+            </div>
+        </div> <div class="col-lg-4">
+            <img scr="" class="card_icon" /><br>
+
+
+            <div class="dashbord">
+                <div class="icon-section">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i><br>
+                    <small>Manage Salaries</small>
+                    <p>@ViewBag.Staff</p>
+                    <h5 class="font-weight-bold text_color_cards">Salaries</h5>
+
+                </div>
+                <div class="detail-section">
+
+                    <a class="btn btn-light round_b button_cards" asp-action="create" asp-controller="Course_reg">Manage salaries &nbsp;<i class="fa fa-money" aria-hidden="true"></i></a>
+
                 </div>
             </div>
         </div> <div class="col-lg-4">
             <div class="dashbord ">
                 <div class="icon-section">
-                    <i class="fa fa-user" aria-hidden="true"></i><br>
-                    <small>Registered staff</small>
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i><br>
+                    <small>Manage Salaries</small>
                     <p>@ViewBag.Staff</p>
+                    <h5 class="font-weight-bold text_color_cards">Salaries</h5>
+
                 </div>
                 <div class="detail-section">
                     <a class="btn btn-light round_b" asp-action="index" asp-controller="staff_log_in">Manage staff&nbsp;<i class="fa fa-angle-double-right"></i></a>
@@ -94,7 +125,7 @@
                     <p>@ViewBag.Staff</p>
                 </div>
                 <div class="detail-section">
-                    <a class="btn btn-light round_b text-dark" data-target="#receipt_mod" data-toggle="modal">Manage attendance&nbsp;<i class="fa fa-angle-double-right"></i></a>
+                    <a class="btn btn-light round_b text-dark" data-target="#receipt_mod" data-toggle="modal">Update price&nbsp;<i class="fa fa-angle-double-right"></i></a>
 
                 </div>
             </div>
@@ -120,9 +151,9 @@
 <div class="modal fade" id="receipt_mod" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content w3-card">
-           
+
             <div class="modal-header  p-2  ">
-                <img src="~/images/logo_1.png"  class="logo" />&nbsp;<b>Enter class details &nbsp;</b>
+                <img src="~/images/logo_1.png" class="logo" />&nbsp;<b>Enter class details &nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
                 <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
@@ -180,14 +211,14 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-white text-dark shaddo">Next</button>
-                        </div>
+                    </div>
                 </form>
             </div>
-          
+
             <div class="modal-body ">
                 <div class="row">
                     <div class="col-lg-12 text-right">
-                        <button type="button"  class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
+                        <button type="button" class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
                     </div>            <!-- Modal Header -->
                 </div>            <!-- Modal Header -->
             </div>
@@ -196,14 +227,14 @@
 </div><div class="modal fade" id="att_r" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content w3-card">
-           
+
             <div class="modal-header  p-2  ">
-                <img src="~/images/logo_1.png"  class="logo" />&nbsp;<b>Which report to access? &nbsp;</b>
+                <img src="~/images/logo_1.png" class="logo" />&nbsp;<b>Which report to access? &nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
                 <form asp-action="attendance_report" asp-controller="staff_log_in" id="modify_form">
                     <div class="form-group">
-                       @* <select class="form-control" name="course" asp-items="@(new SelectList(@ViewBag.Drop_sulier,"id","Course"))"></select>*@
+                        @* <select class="form-control" name="course" asp-items="@(new SelectList(@ViewBag.Drop_sulier,"id","Course"))"></select>*@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="year">
@@ -256,14 +287,14 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-white text-dark shaddo">Next</button>
-                        </div>
+                    </div>
                 </form>
             </div>
-          
+
             <div class="modal-body ">
                 <div class="row">
                     <div class="col-lg-12 text-right">
-                        <button type="button"  class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
+                        <button type="button" class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
                     </div>            <!-- Modal Header -->
                 </div>            <!-- Modal Header -->
             </div>
