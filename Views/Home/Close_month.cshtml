@@ -5,12 +5,33 @@
         <div class="col-lg-12">
             <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text-center text_color p-2">
 
+                <table class="w-100">
+                    <tr>
+                        <th colspan="5">
+                            <h3>Sales report for</h3>
 
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+
+                            <button type="button" class="btn button_custome mr-1">November</button>
+                            <button type="button" class="btn button_custome">2021</button>
+                            @*<button type="button" class="btn btn-secondary">Right</button>*@
+
+
+                        </td>
+
+                    </tr>
+
+
+                </table>
+                <hr />
                 <table class="w-100">
                     <tr>
                         <th colspan="2">
                             <h3>Water & Electricity</h3>
-                        
+
                         </th>
                     </tr>
                     <tr>
@@ -30,103 +51,145 @@
                         <th>
                             Ksh. 7000
                         </th>
-                    </tr>    <tr>
+                    </tr>
+                    <tr>
                         <th>
-                          Total
+                            Total
 
                         </th>
                         <th>
                             Ksh. 14,000.00
                         </th>
                     </tr>
-                    </table>
-                    <hr />
+                </table>
+                <hr />
 
-                    <table class="w-100 text-center">
-                        <tr>
-                            <th colspan="2">
-                                <h3>Employee Salaries</h3> 
-                            </th>
-                        </tr>
-                        <tr>
+                <table class="w-100 text-center">
+                    <tr>
+                        <th colspan="2">
+                            <h3>Employee Salaries</h3>
+                        </th>
+                    </tr>
+                    <tr>
 
-                            <td>No. Of Employees:</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
+                        <td>No. Of Employees:</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
 
-                            <td>Salary/Month:</td>
-                            <td>Ksh. 20,000.00</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Total
+                        <td>Salary/Month:</td>
+                        <td>Ksh. 20,000.00</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Total
 
-                            </th>
-                            <th>
-                                Ksh. 200,000.00
-                            </th>
-                        </tr>
-                    </table> <hr />
+                        </th>
+                        <th>
+                            Ksh. 200,000.00
+                        </th>
+                    </tr>
+                </table> <hr />
 
-                    <table class="w-100 text-center">
-                        <tr>
-                            <th colspan="5">
-                                <h3>Revenue</h3> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                Type of carton
-                            </th>
-                            <th>
-                                Qntity. Sold
-                            </th>
-                            <th>
-                               Price/Carton
-                            </th>
-                            <th>
-                                Total
-                            </th>
-                            <th>
-                                Revenue (5%)
-                            </th>
-                        </tr>
-                        <tr>
+                <table class="w-100 text-center">
+                    <tr>
+                        <th colspan="2">
+                            <h3>Transport</h3>
+                        </th>
+                    </tr>
+                    <tr>
 
-                            <td>1 litre</td>
-                            <td>60</td>
-                            <td>Ksh.300.00</td>
-                            <td>Ksh. 18,000.00</td>
-                            <td>Ksh. 900.00</td>
-                        </tr>
-                        <tr>
+                        <td>Total:</td>
+                        <td>50,000</td>
+                    </tr>
+                    
+                </table> <hr />
 
-                            <td>5 litres</td>
-                            <td>50</td>
-                            <td>Ksh.300.00</td>
-                            <td>Ksh. 18,000.00</td>
-                            <td>Ksh. 900.00</td>
-                        </tr>
-                       
-                        <tr>
-                            <th colspan="4">
-                                Total Revenue
+                <table class="w-100 text-center">
+                    <tr>
+                        <th colspan="5">
+                            <h3>Revenue</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Type of carton
+                        </th>
+                        <th>
+                            Qntity. Sold
+                        </th>
+                        <th>
+                            Price/Carton
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Revenue (5%)
+                        </th>
+                    </tr>
+                    <tr>
 
-                            </th>
-                            <th>
-                                Ksh. 1800.00
-                            </th>
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                          <a asp-action="Close_month" class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Submit</a>
+                        <td>1 litre</td>
+                        <td>60</td>
+                        <td>Ksh.300.00</td>
+                        <td>Ksh. 18,000.00</td>
+                        <td>Ksh. 900.00</td>
+                    </tr>
+                    <tr>
 
-                            </td>
-                        </tr>
-                    </table>
+                        <td>5 litres</td>
+                        <td>50</td>
+                        <td>Ksh.300.00</td>
+                        <td>Ksh. 18,000.00</td>
+                        <td>Ksh. 900.00</td>
+                    </tr>
 
-</div>
+                    <tr>
+                        <th colspan="4">
+                            Total Revenue
+
+                        </th>
+                        <th>
+                            Ksh. 1800.00
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <a asp-action="Close_month" class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Submit</a>
+
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+
+                <table class="w-100 text-center">
+                    <tr>
+                        <th colspan="2">
+                            <h3>Profit analysis</h3>
+                        </th>
+                    </tr>
+                    <tr>
+
+                        <td>Gross income</td>
+                        <td>400,000.00</td>
+                    </tr>
+                    <tr>
+
+                        <td>Deductions:</td>
+                        <td>Ksh. 20,000.00</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Profit
+
+                        </th>
+                        <th>
+                            Ksh. 200,000.00
+                        </th>
+                    </tr>
+                </table>
+            </div>
                 </div>
                 </div>
        

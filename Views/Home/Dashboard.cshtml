@@ -143,7 +143,7 @@
                 </div>
                 <div class="detail-section">
                     <a class="btn btn-light round_b button_cards_r" style="color: #149077
-" asp-action="create" asp-controller="Course_reg">Go to reports&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+" asp-action="Reports" >Go to reports&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 
 
                 </div>
@@ -299,8 +299,15 @@
             </div>
             <div class="modal-body  p-2  text-center">
                 <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
-                    No. of bottles added
-                    <input class="form-control" name="price_il" required placeholder="Enter quantity here" />
+                    <div class="form-group">
+                        No. of bottles added
+                        <input class="form-control" name="price_il" required placeholder="Enter quantity here" />
+                    </div>
+                    <div class="form-group">
+                       Transport cost
+                        <input class="form-control" name="price_il" required placeholder="Enter transport cost here" />
+                    </div>
+                   
                     <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update stock</button>
                 </form>
             <div class="modal-body ">
@@ -319,7 +326,7 @@
         <div class="modal-content w3-card">
 
             <div class="modal-header  p-2  custome_header color_custome">
-                <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Add 1 Litres botles&nbsp;</b>
+                <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Cartons sold&nbsp;</b>
             </div>
             <div class="modal-body  p-2  text-center">
                 <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
@@ -374,9 +381,7 @@
                                     </select>
 
                                 </td>
-                                <th>
-                                    7000/Month
-                                </th>
+                               
                             </tr>
                             <tr>
                                 <th>Total</th>
@@ -384,9 +389,7 @@
                                 <td>
                                     <input class="form-control" name="price_il" required placeholder="Total" />
                                 </td>
-                                <th>
-                                    7000/Month
-                                </th>
+                                
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -410,9 +413,7 @@
                                 <td>
                                     <input class="form-control" name="price_il" required placeholder="Enter revenue here" />
                                 </td>
-                                <th>
-                                   5%
-                                </th>
+                               
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -539,10 +540,16 @@
             </div>
             <div class="modal-body  p-2  text-center">
                 <form asp-action="change_1l" asp-controller="staff_log_in" id="modify_form">
-                    No. of bottles added
+                    <div class="form-group">
+                        No. of bottles added
 
-                    <input class="form-control" name="price_il" required placeholder="Enter quantity added here" />
-                    <button class="btn button_custome mt-3 " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Update stock</button>
+                        <input class="form-control" name="price_il" required placeholder="Enter quantity added here" />
+                        </div>
+                        <div class="form-group">
+                            Transport cost
+                            <input class="form-control" name="price_il" required placeholder="Enter transport cost here" />
+                        </div>
+                        <button class="btn button_custome mt-3 " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Update stock</button>
                 </form>
             <div class="modal-body ">
                 <div class="row">

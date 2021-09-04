@@ -24,6 +24,9 @@ namespace TASK.Controllers
         }public IActionResult Index()
         {
             return View();
+        }public IActionResult Reports()
+        {
+            return View();
         }
         
         public IActionResult log_in()
