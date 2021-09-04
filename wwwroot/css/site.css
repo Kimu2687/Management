@@ -119,7 +119,7 @@ button.accept-policy {
     transition: font-size .5s ease,background-color,box-shadow 1s;
 }
     .button_cards:hover {
-        background-color: #7B241C !important;
+        background-color: #7B241C !important;`
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border: none;
     }  .button_cards:active {
@@ -128,6 +128,31 @@ button.accept-policy {
         border: none;
         transform:translateX(60px),translateY(60px)
     }
+.modal_logo{
+    height:40px;
+}
+.color_custome {
+    color: #f39c12 !important;
+}
+.button_cards_r {
+    background-color: #F39C12 !important;
+    color: #149077!important;
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-size: 12px !important;
+    transition: font-size .5s ease,background-color,box-shadow 1s;
+}
+    /*.button_cards_r:hover {
+        background-color: #7B241C !important;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: none;
+    }
+    .button_cards_r:active {
+        background-color: #7B241C !important;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: none;
+        transform: translateX(60px),translateY(60px)
+    }*/
 .text_color_cards {
     color: #F4D03F !important;
     font-size: 30px;
@@ -138,7 +163,7 @@ button.accept-policy {
 }
     .text_color_cards:hover {
         font-size: 50px;
-        background-color: #a93226;
+       
     }
 
     .home_title {

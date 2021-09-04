@@ -31,6 +31,7 @@ namespace TASK.Controllers
 
         public IActionResult Dashboard()
         {
+            ViewBag.count_items = 1;
             return View();
         }public IActionResult Privacy()
         {
