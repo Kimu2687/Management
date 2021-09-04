@@ -1,0 +1,53 @@
+﻿@model Attendant_check.Models.Cartons
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Cartons</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Carton_category" class="control-label"></label>
+                <input asp-for="Carton_category" class="form-control" />
+                <span asp-validation-for="Carton_category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buying_price" class="control-label"></label>
+                <input asp-for="Buying_price" class="form-control" />
+                <span asp-validation-for="Buying_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Selling_price" class="control-label"></label>
+                <input asp-for="Selling_price" class="form-control" />
+                <span asp-validation-for="Selling_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="No_of_bottle" class="control-label"></label>
+                <input asp-for="No_of_bottle" class="form-control" />
+                <span asp-validation-for="No_of_bottle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bottle_per_carton" class="control-label"></label>
+                <input asp-for="bottle_per_carton" class="form-control" />
+                <span asp-validation-for="bottle_per_carton" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,48 @@
+﻿@model Attendant_check.Models.Cartons
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cartons</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Carton_category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Carton_category)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Buying_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Buying_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Selling_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Selling_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.No_of_bottle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.No_of_bottle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.bottle_per_carton)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.bottle_per_carton)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
