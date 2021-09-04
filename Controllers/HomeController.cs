@@ -18,7 +18,10 @@ namespace TASK.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Close_month()
+        {
+            return View();
+        }public IActionResult Index()
         {
             return View();
         }

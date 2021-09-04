@@ -21,7 +21,7 @@
 
                                     <td><button data-toggle="modal" data-target="#manage_cartons" class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Add or restock cartons</button></td>
                                     <td><button data-toggle="modal" data-target="#sell_item" class="btn button_custome "><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>&nbsp;Sell carton</button></td>
-                                    <td> <form asp-action="create"><button class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Close month</button></form></td>
+                                    <td>  <a asp-action="Close_month"  class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Close month</a></td>
                                     <td>
                                        
                                     </td>
@@ -125,8 +125,8 @@
 
                 </div>
                 <div class="detail-section">
-                    <a class="btn btn-light round_b button_cards_r" style="color: #149077
-" asp-action="create" asp-controller="Course_reg"><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Go to Expenses&nbsp;</a>
+                    <a class="btn btn-light round_b button_cards_r" data-target="#expenses" data-toggle="modal" style="color: #149077
+" ><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Go to Expenses&nbsp;</a>
 
 
                 </div>
@@ -349,7 +349,99 @@
     </div>
 </div>
 </div>
+    <div class="modal fade" id="expenses" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content w3-card">
 
+                <div class="modal-header  p-2  custome_header color_custome">
+                    <img src="/images/bottle.png" class="modal_logo" />&nbsp;<b class="color_custome">Manage expenses&nbsp;</b>
+                </div>
+                <div class="modal-body  p-2  text-center">
+                    <form asp-action="take_attendance" asp-controller="staff_log_in" id="modify_form">
+                        <table class="w-100">
+                          
+                            <tr>
+                                <th>Bill</th>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Water">
+                                            Water
+                                        </option>
+                                        <option value="Electricity">
+                                            Electricity
+                                        </option>
+
+                                    </select>
+
+                                </td>
+                                <th>
+                                    7000/Month
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+
+                                <td>
+                                    <input class="form-control" name="price_il" required placeholder="Total" />
+                                </td>
+                                <th>
+                                    7000/Month
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Submit</button>
+
+                                </td>
+                                
+                            </tr>
+
+
+                        </table>
+
+                        <hr />
+
+                        <table class="w-100">
+                            <tr>
+                                <th colspan="2">Revenue</th>
+                            </tr>
+                            <tr>
+                                <td>Tax rate (%):</td>
+                                <td>
+                                    <input class="form-control" name="price_il" required placeholder="Enter revenue here" />
+                                </td>
+                                <th>
+                                   5%
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button class="btn button_custome mt-3 " action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Submit</button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </table>
+                       
+                        <hr />
+                       
+
+
+
+                    </form>
+                    <div class="modal-body ">
+                        <div class="row">
+                            <div class="col-lg-12 text-right">
+                                <button type="button" class="btn btn-white text-dark btn-sm shaddo" data-dismiss="modal">Exit</button>
+                            </div>            <!-- Modal Header -->
+                        </div>            <!-- Modal Header -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="modal fade" id="Manage_salary" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content w3-card">
