@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TASK;
 
 namespace TASK.Migrations
 {
     [DbContext(typeof(Database_Context))]
-    partial class Database_ContextModelSnapshot : ModelSnapshot
+    [Migration("20210905085400_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,16 +158,13 @@ namespace TASK.Migrations
                     b.Property<decimal>("Buying_expenses")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<decimal>("Date")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Electricity_bill")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Gross_income")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Profit")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Revenue")
@@ -175,9 +174,6 @@ namespace TASK.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Transport")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("water_bill")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("id");

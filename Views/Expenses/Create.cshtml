@@ -188,9 +188,40 @@
         </form>
       
 
-    </div> <div class="col-md-12">
+    </div>
+    <div class="col-md-6">
+        <h6 class="font-weight-bold">Buying Expenses</h6>
+        <form asp-action="Create" class=" text_color p-3   ">
+
+            <table class="table">
+                <tr>
+                    <td class="border-0">1 Litre Bottles:</td>
+                    <td class="border-0">@ViewBag.one_litre.ToString("#,##0.00")</td>
+                </tr>
+                <tr>
+                    <td class="border-0">5 Litres Bottles:</td>
+                 
+                    <td class="border-0">
+                        
+                        
+                        <p>@ViewBag.five_litre.ToString("#,##0.00")</p>
+
+
+                   </td>
+                        
+                </tr>
+                <tr>
+                    <th class="border-0">Total Spent:</th>
+                    <th class="border-0">@ViewBag.buying_expense.ToString("#,##0.00")</th>
+                </tr>
+
+            </table>
+        </form>
+
+
+    </div> <div class="col-md-6 mt-2">
         <h6 class="font-weight-bold">Profit analysis</h6>
-        <form asp-action="Create" class=" text_color p-3 ">
+        <form asp-action="Create" class=" text_color p-3  bg-white ">
 
             <table class="table">
                 <tr>
@@ -198,7 +229,7 @@
                     <td class="border-0">@ViewBag.Cash_made.ToString("#,##0.00")</td>
                 </tr>
                 <tr>
-                    <td class="border-0">Deductions & Expenses:</td>
+                    <td class="border-0">Total Deductions & Expenses:</td>
                  
                     <td class="border-0">
                         
@@ -209,15 +240,48 @@
                    </td>
                         
                 </tr>
-                <tr>
-                    <td class="border-0">Salary(Monthly):</td>
-                    <td class="border-0">@ViewBag.salary.ToString("#,##0.00")</td>
-                </tr> <tr>
-                    <th class="border-0">Total:</th>
-                    <th class="border-0">@ViewBag.total_salary.ToString("#,##0.00")</th>
+                <tr >
+                    <th class="border-0" >Company Profit:</th>
+                    <th class="bg-success text-white  border-0" style="border-radius:15px;">@ViewBag.profit.ToString("#,##0.00")</th>
                 </tr>
 
             </table>
+        </form>
+
+
+    </div><div class="col-md-12 mt-2">
+        <h6 class="font-weight-bold">Submit Monthly report</h6>
+        <form asp-action="Create" class=" text_color p-3  bg-white ">
+            @if (ViewBag.hide_submit_m == 1)
+            {
+                <table class="table">
+                    <tr>
+                        <td class="border-0">
+                            NB: This month's sales have already been submitted; there is no need to do so again.<br /><br />
+                          @*  <a asp-action="Create" asp-route-submit="1" class="btn button_custome"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>*@
+
+                        </td>
+
+                    </tr>
+
+
+                </table>
+            }
+            else
+            {
+            <table class="table">
+                <tr>
+                    <td class="border-0">
+                        To keep track of prior months' sales, submit sales.<br /><br />
+                        <a asp-action="Create" asp-route-submit="1" class="btn button_custome"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+            }
         </form>
 
 

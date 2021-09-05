@@ -9,6 +9,7 @@ using Attendant_check.Models;
 using TASK;
 using static TASK.Base_controller.BaseController;
 using TASK.Base_controller;
+using System.Runtime.InteropServices;
 
 namespace Attendant_check.Controllers
 {
@@ -53,14 +54,22 @@ namespace Attendant_check.Controllers
         }
 
         // GET: Expenses/Create
-        public IActionResult Create()
+        public IActionResult Create([Optional] string submit)
         {
+
+          
+
             //INSTANSTIATING GENERAL CLASS FROM BASE CONTROLLER
 
             general_class x = new general_class();
             string Month = x.Month(DateTime.Now.ToString("MM/dd/yyyy"));
-
-
+            //LETS CHECK IF WE SUBMITTED MONTHLY SALES
+            var CHECK_MONTHLY = _context.Monthly_sales.FirstOrDefault(x => x.Date.Month.ToString() == Month);
+            if (CHECK_MONTHLY != null)
+            {
+                //LETS HIDE SUBMIT BUTTON FROM THE INTERFACE
+                ViewBag.hide_submit_m = 1;
+            }
             //LETS CALCULATE TRANSPORT THIS MONTH
             var CHECK_TRANSPORT = _context.Expenses.Where(j => j.Expense == "Transport" && j.Date.Month.ToString()==Month).Sum(c=>c.Ammount);
             if (CHECK_TRANSPORT != null)
@@ -104,13 +113,52 @@ namespace Attendant_check.Controllers
             ViewBag.supply_empl = GET_SAL.Supply_employees;
 
 
+            //EXPENSES INCURED IN BUYING BOTLES
+            // 1 Litre BOTTLE
+            decimal  ONE_LITRE = _context.Expenses.Where(n => n.Expense == "Buying_1 Litre" && n.Date.Month.ToString() == Month).Sum(b => b.Ammount);
+            ViewBag.one_litre = ONE_LITRE; 
+            decimal  FIVE_LITRE = _context.Expenses.Where(n => n.Expense == "Buying_5 Litres" && n.Date.Month.ToString() == Month).Sum(b => b.Ammount);
+            ViewBag.five_litre = FIVE_LITRE;
+
+            decimal SUM_OF_BUYING_EX = ONE_LITRE + FIVE_LITRE;
+            ViewBag.buying_expense = SUM_OF_BUYING_EX;
+
+
+
             //SUM OF ALL DEDUCTIONS
 
-            double TOTAL_D = Decimal.ToDouble(TOTAL) +Decimal.ToDouble(WATER_BILL) + Decimal.ToDouble(ELECTRICITY_BILL)+ REVENUE +Decimal.ToDouble(CHECK_TRANSPORT);
+            double TOTAL_D = Decimal.ToDouble(TOTAL) +Decimal.ToDouble(WATER_BILL) + Decimal.ToDouble(ELECTRICITY_BILL)+ REVENUE +Decimal.ToDouble(CHECK_TRANSPORT)+ Decimal.ToDouble(SUM_OF_BUYING_EX);
             ViewBag.Total_deduction = TOTAL_D;
 
+            //LETS CALCULATE PROFIT
+            //.....CASH COLLECTED THIS MONTH
+            double SALES_CASH = (SOLD_CARTONS_THIS_MONTH * 300);
+
+            //.....PROFIT
+            double PROFIT = SALES_CASH - TOTAL_D;
+            ViewBag.profit = PROFIT;
+
+            //LETS RECORD SALES RECORDS FOR THIS MONTH
+            if (submit != null)
+            {
 
 
+                Monthly_sales M_SALES_CASH = new Monthly_sales();
+                M_SALES_CASH.Buying_expenses =SUM_OF_BUYING_EX;
+                M_SALES_CASH.Date = DateTime.Now;
+                M_SALES_CASH.Electricity_bill = ELECTRICITY_BILL;
+                M_SALES_CASH.water_bill = WATER_BILL;
+                M_SALES_CASH.Revenue = (decimal)REVENUE;
+                M_SALES_CASH.Salary = TOTAL;
+                M_SALES_CASH.Gross_income =(decimal)SALES_CASH;
+                M_SALES_CASH.Profit =(decimal)PROFIT;
+                M_SALES_CASH.Transport = CHECK_TRANSPORT;
+                _context.Add(M_SALES_CASH);
+                _context.SaveChanges();
+                
+                swal("Success!", "Monthle sales submitted successfully", "success");
+
+            }
             return View();
         }
 
