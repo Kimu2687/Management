@@ -4,7 +4,7 @@
 <div class="row " style="margin-top:30px;">
     <div class="col-lg-12">
         <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text-center no_zoom p-2">
-
+            <form asp-action="Report">
             <table class="w-100">
                 <tr>
                     <th colspan="5">
@@ -15,12 +15,12 @@
                 <tr>
                     <td>
                         Date from
-                        <input class="form-control" type="date" />
+                        <input name="from" class="form-control" type="date" />
 
                     </td>
                     <td>
                         Date to
-                        <input class="form-control" type="date" />
+                        <input name="to" class="form-control" type="date" />
 
                     </td>
                     <td colspan="5">
@@ -35,6 +35,7 @@
             
 
             </table>
+                </form>
             <hr />
             <div class="row">
                 <div class="col-lg-6">
@@ -89,7 +90,7 @@
                                 Total:
                             </th>
                             <th>
-                                @ViewBag.one_litre.ToString("#,##0.00")
+                               Ksh. @ViewBag.one_litre.ToString("#,##0.00")
                             </th>
                         </tr>
 
@@ -108,51 +109,34 @@
 
                                     </th>
                                     <th>
-                                        Carton
+                                        Expense
 
                                     </th>
                                     <th>
-                                        Sold
+                                        Ammount
 
                                     </th>
-                                    <th>
-                                        Total
-
-                                    </th>
+                                    
                                 </tr>
-                                @foreach (var items in ViewBag.last_7)
+                                @foreach (var items in ViewBag.last_7_exp)
                                 {
                                     <tr>
                                         <td>@items.Date.ToString("dd/MM/yyyy")</td>
-                                        <td>@items.Carton_category</td>
-                                        <td>@items.Cartons_sold_</td>
-                                        <td>@items.Total</td>
+                                        <td>@items.Expense</td>
+                                        
+                                        <td>@items.Ammount</td>
 
                                     </tr>
 
                                 }
-                                <tr>
-                                    <th>
-                                        5 litres Cartons sold:
-                                    </th>
-                                    <th>
-                                        26000
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        1 Litres Cartons sold:
-                                    </th>
-                                    <th>
-                                        70000
-                                    </th>
-                                </tr>
+                                
+
                                 <tr>
                                     <th>
                                         Total:
                                     </th>
                                     <th>
-                                        56000.00
+                                       Ksh. @ViewBag.sum_last_7.ToString("#0,##0.00")
                                     </th>
                                 </tr>
 

@@ -37,7 +37,11 @@ namespace TASK.Controllers
             {
                 //LETS GET LAST 7 SALES
                 ViewBag.last_7 = _context.Cartons_sold.Take(7).ToList();
-                ViewBag.one_litre = _context.Cartons_sold.Sum(x => x.Total);
+                ViewBag.one_litre = _context.Cartons_sold.Take(7).Sum(x => x.Total);
+                
+                //LETS GET EXPENSES
+                ViewBag.last_7_exp = _context.Expenses.Take(7).ToList();
+                ViewBag.sum_last_7 = _context.Expenses.Take(7).Sum(x => x.Ammount);
 
 
             }
@@ -196,7 +200,9 @@ namespace TASK.Controllers
             //LETS CHECK IF REMAINIG STOCK IS NEGATIVE
 
             int BOTTLES_IN_STOCK = GET_FIELDS.No_of_bottle;
-            int NEW_STOCK = BOTTLES_IN_STOCK - carton_sold;
+            //GETTING NUMBER OF BOTTLES 5LITRES
+            int BOTTLES = carton_sold * GET_FIELDS.bottle_per_carton;
+            int NEW_STOCK = BOTTLES_IN_STOCK - BOTTLES;
             //--------------------------------------------------------------------------------------------------------------------------------------------
             if (NEW_STOCK < 0)
             {
