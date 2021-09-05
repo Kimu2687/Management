@@ -14,7 +14,7 @@ namespace Attendant_check.Models
 
         [Required]
         [Display(Name = "No. of Industry employees", Prompt = "Industry employees")]
-        public string Industry_employees { get; set; }
+        public int Industry_employees { get; set; }
 
         [Required]
         [Display(Name = "No. of Supply employees", Prompt = "Supply employees")]

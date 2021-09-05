@@ -41,7 +41,7 @@ namespace TASK.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult  insert_employees(string Industry_employees, int Supply_employees, decimal Salary)
+        public JsonResult  insert_employees(int Industry_employees, int Supply_employees, decimal Salary)
         {
             //LETS CHECK IF EMPLOYEES DETAILS ARE AVAILABLE 
             var CHECK_EMPL = _context.Employees.ToList();
@@ -98,6 +98,19 @@ namespace TASK.Controllers
             _context.Add(EX);
             _context.SaveChanges();
 
+
+            //LETS ADD BUYING EXPENSE
+            //Lets get buying price of this bottles
+            decimal BOTTLE_PRICE = _context.Cartons.FirstOrDefault(x => x.Carton_category == category).Buying_price;
+            decimal BUYING_TOTAL = BOTTLE_PRICE * quantity;
+
+            //LETS INSERT IT TO EXPENSES
+            Expenses B_E = new Expenses();
+            B_E.Expense = "Buying_" + category;
+            B_E.Ammount = BUYING_TOTAL;
+            B_E.Date = DateTime.Now;
+            _context.Add(B_E);
+            _context.SaveChanges();
 
             //LETS UPDATE THE INTERFACE WITH THE NEW BOTTLE QUANTITY
             res.response_message = N_QNTY.ToString();

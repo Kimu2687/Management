@@ -8,15 +8,16 @@
 
 <h4 class="text_color p-3">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add Expenses &nbsp;|&nbsp;
+    <a asp-action="Index" class="btn btn-outline-success">@DateTime.Now.ToString("MMMM"),@DateTime.Now.ToString("yyyy")</a>|
     <a asp-action="Index" class="btn button_custome">Back to List</a>
 
 </h4>
 @*<hr />*@
 <br />
 <div class="row">
-    <div class="col-md-6 text_color p-3 ">
+    <div class="col-md-6">
         <h6 class="font-weight-bold">Water and Electricity bill</h6>
-        <form asp-action="Create">
+        <form asp-action="Create" class=" text_color p-3 ">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Choose expense:</label>
@@ -49,64 +50,180 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-default button_custome" />
             </div>
+        
+            <table class="table">
+               
+                <tr>
+                    <td class="border-0">Electricity bill:</td>
+                    <td class="border-0">@ViewBag.electricity_bill</td>
+                </tr></tr>
+                <tr>
+                    <td class="border-0">Water bill:</td>
+                    <td class="border-0">@ViewBag.water_bill</td>
+                </tr>
+                @{
+                    decimal total_bills = @ViewBag.electricity_bill + @ViewBag.water_bill;
+
+                 }
+                <tr>
+                    <th class="border-0">Total(Expenses):</th>
+                    <th class="border-0">@total_bills</th>
+                </tr>
+
+
+            </table>
         </form>
-        <h6 class="font-weight-bold">Transport expenses this month:</h6>
+
+      
+    </div>
+    <div class="col-md-6 ">
+        @if (@ViewBag.hide_button == "1")
+        {
+            <h6 class="font-weight-bold">&nbsp;Revenue per carton:&nbsp;(Already submitted)</h6>
+
+        }
+        else
+        {
+            <h6 class="font-weight-bold">Revenue per carton:</h6>
+
+        }
+    <form asp-action="Create" class="text_color p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Expense" class="control-label"></label>
+            <select class="form-control" asp-for="Expense" disabled>
+                <option value="Revenue" selected>
+                    Revenue
+                </option>
+                <option value="Water">
+                    Water
+                </option>
+                <option value="Electricity">
+                    Electricity
+                </option>
+
+
+
+            </select>
+            <span asp-validation-for="Expense" class="text-danger"></span>
+        </div>
         <table class="table">
             <tr>
-                <th>Ksh.</th>
-                <th>@ViewBag.total_revenue.ToString("#,##0.00")</th>
+                <td class="border-0">Rate:</td>
+                <td class="border-0">5%</td>
             </tr>
-           
+            <tr>
+                <td class="border-0">Carton sold this month:</td>
+                <td class="border-0">@ViewBag.sold_cartons.ToString("#,##0")</td>
+            </tr>
+            <tr>
+                <td class="border-0">Cash Made:</td>
+                <td class="border-0">@ViewBag.Cash_made.ToString("#,##0.00")</td>
+            </tr>
+            <tr>
+                <th class="border-0">Total(Revenue):</th>
+                <th class="border-0">@ViewBag.total_rvenue.ToString("#,##0.00")</th>
+            </tr>
         </table>
-    </div>
-    <div class="col-md-6 text_color p-3">
-        <h6 class="font-weight-bold">Revenue per carton:</h6>
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Expense" class="control-label"></label>
-                <select class="form-control" asp-for="Expense" disabled>
-                    <option value="Revenue" selected>
-                        Revenue
-                    </option> <option value="Water">
-                        Water
-                    </option>
-                    <option value="Electricity">
-                        Electricity
-                    </option>
+   
+        <div class="form-group" hidden>
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" value="@DateTime.Now" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        @if (@ViewBag.hide_button == "1")
+        {
 
 
 
-                </select>
-                <span asp-validation-for="Expense" class="text-danger"></span>
-            </div>
-            <table class="table">
-                <tr>
-                    <th>Rate:</th>
-                    <th>5%</th>
-                </tr><tr>
-                    <th>Carton sold this month:</th>
-                    <th>@ViewBag.sold_cartons.ToString("#,##0")</th>
-                </tr>
-            </table>
-            <div class="form-group">
-                <label  class="control-label">Ammount:</label>
-                <input disabled value="@ViewBag.total_rvenue" asp-for="Ammount" class="form-control" />
-                <span asp-validation-for="Ammount" class="text-danger"></span>
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" value="@DateTime.Now.ToString("#,##0.000")" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
+        }
+        else
+        {
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-default button_custome" />
             </div>
+        }
+    </form>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-6">
+        <h6 class="font-weight-bold">Transport expenses this month:</h6>
+        <form asp-action="Create" class=" text_color p-3 ">
+
+            <table class="table">
+                <tr>
+                    <th class="border-0">Ksh.</th>
+                    <th class="border-0">@ViewBag.transport.ToString("#,##0.00")</th>
+                </tr>
+
+            </table>
         </form>
+
+    
+    </div>
+    <div class="col-md-6">
+        <h6 class="font-weight-bold">Salary:</h6>
+        <form asp-action="Create" class=" text_color p-3 ">
+
+            <table class="table">
+                <tr>
+                    <td class="border-0">Industry Employees:</td>
+                    <td class="border-0">@ViewBag.industry_empl</td>
+                </tr>
+                <tr>
+                    <td class="border-0">Supply Employees:</td>
+                    <td class="border-0">@ViewBag.supply_empl</td>
+                </tr>
+                <tr>
+                    <td class="border-0">Salary(Monthly):</td>
+                    <td class="border-0">@ViewBag.salary.ToString("#,##0.00")</td>
+                </tr>
+                <tr>
+                    <th class="border-0">Total:</th>
+                    <th class="border-0">@ViewBag.total_salary.ToString("#,##0.00")</th>
+                </tr>
+
+            </table>
+        </form>
+      
+
+    </div> <div class="col-md-12">
+        <h6 class="font-weight-bold">Profit analysis</h6>
+        <form asp-action="Create" class=" text_color p-3 ">
+
+            <table class="table">
+                <tr>
+                    <td class="border-0">Gross Income:</td>
+                    <td class="border-0">@ViewBag.Cash_made.ToString("#,##0.00")</td>
+                </tr>
+                <tr>
+                    <td class="border-0">Deductions & Expenses:</td>
+                 
+                    <td class="border-0">
+                        
+                        
+                        <p>@ViewBag.Total_deduction.ToString("#,##0.00")</p>
+
+
+                   </td>
+                        
+                </tr>
+                <tr>
+                    <td class="border-0">Salary(Monthly):</td>
+                    <td class="border-0">@ViewBag.salary.ToString("#,##0.00")</td>
+                </tr> <tr>
+                    <th class="border-0">Total:</th>
+                    <th class="border-0">@ViewBag.total_salary.ToString("#,##0.00")</th>
+                </tr>
+
+            </table>
+        </form>
+
+
     </div>
 </div>
 
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

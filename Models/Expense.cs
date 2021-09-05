@@ -22,14 +22,15 @@ namespace Attendant_check.Models
 
 
         [Display(Name = "Date", Prompt = "Date")]
-        public DateTime Date { get; set; }
-        
-        
+        public DateTime Date { get; set; } = DateTime.Now;
 
 
-    
 
-     
+
+
+
+
+
 
 
 

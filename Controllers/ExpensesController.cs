@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Attendant_check.Models;
 using TASK;
 using static TASK.Base_controller.BaseController;
+using TASK.Base_controller;
 
 namespace Attendant_check.Controllers
 {
-    public class ExpensesController : Controller
+    public class ExpensesController : BaseController
     {
 
         private readonly Database_Context _context;
@@ -60,24 +61,57 @@ namespace Attendant_check.Controllers
             string Month = x.Month(DateTime.Now.ToString("MM/dd/yyyy"));
 
 
-            //LETS CHECK IF REVENUE HAS BEE SUBMITTED THIS MONTH
-            var CHECK_REVENUE = _context.Expenses.Where(j => j.Expense == "Transport" && j.Date.Month.ToString()==Month).Sum(c=>c.Ammount);
-            if (CHECK_REVENUE != null)
+            //LETS CALCULATE TRANSPORT THIS MONTH
+            var CHECK_TRANSPORT = _context.Expenses.Where(j => j.Expense == "Transport" && j.Date.Month.ToString()==Month).Sum(c=>c.Ammount);
+            if (CHECK_TRANSPORT != null)
             {
-                ViewBag.total_revenue = CHECK_REVENUE;
+                ViewBag.transport = CHECK_TRANSPORT;
+                ViewBag.hide_button = "1";
 
-
+            }
+            else
+            {
+                ViewBag.transport = 0;
+                //ViewBag.hide_button = "1";
             }
             //LETS FIND CARTONS SOLD THIS MONTH
             double SOLD_CARTONS_THIS_MONTH = _context.Cartons_sold.Where(x => x.Date.Month.ToString() == Month).Sum(b => b.Cartons_sold_);
             ViewBag.sold_cartons = SOLD_CARTONS_THIS_MONTH;
 
             //LETS CALCULATE THE REVENUE
-            double REVENUE = 0.05 * SOLD_CARTONS_THIS_MONTH;
+            double REVENUE = 0.05 * (SOLD_CARTONS_THIS_MONTH * 300);
             ViewBag.total_rvenue = REVENUE;
+            //LETS POPULATE CASH MADE
+            ViewBag.Cash_made = SOLD_CARTONS_THIS_MONTH * 300;
+
+            //LETS GET WATER & WATER BILLS
+            var WATER_BILL = _context.Expenses.Where(j => j.Expense == "Water" && j.Date.Month.ToString() == Month).Sum(c => c.Ammount);
+            ViewBag.water_bill = WATER_BILL;
+
+            //LETS GET ELECTRICITY BILLS 
+            var ELECTRICITY_BILL = _context.Expenses.Where(j => j.Expense == "Electricity" && j.Date.Month.ToString() == Month).Sum(c => c.Ammount);
+            ViewBag.electricity_bill = ELECTRICITY_BILL;
 
 
-            return  View();
+            //LETS GET SALARY DETAILS
+            var GET_SAL = _context.Employees.FirstOrDefault();
+            int ALL_EMPLOYEES = GET_SAL.Industry_employees + GET_SAL.Supply_employees;
+            decimal SALARY = GET_SAL.Salary;
+            decimal TOTAL = ALL_EMPLOYEES * SALARY;
+            ViewBag.total_salary = TOTAL;
+            ViewBag.salary = SALARY;
+            ViewBag.industry_empl = GET_SAL.Industry_employees;
+            ViewBag.supply_empl = GET_SAL.Supply_employees;
+
+
+            //SUM OF ALL DEDUCTIONS
+
+            double TOTAL_D = Decimal.ToDouble(TOTAL) +Decimal.ToDouble(WATER_BILL) + Decimal.ToDouble(ELECTRICITY_BILL)+ REVENUE +Decimal.ToDouble(CHECK_TRANSPORT);
+            ViewBag.Total_deduction = TOTAL_D;
+
+
+
+            return View();
         }
 
         // POST: Expenses/Create
@@ -85,14 +119,56 @@ namespace Attendant_check.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Expense,Ammount,Date")] Expenses expenses)
+        public async Task<IActionResult> Create([Bind("id,Expense,Ammount")] Expenses expenses)
         {
+            general_class x = new general_class();
+            string Month = x.Month(DateTime.Now.ToString("MM/dd/yyyy"));
+            //LETS CHECK IF REVENUE HAS BEE SUBMITTED THIS MONTH
+            var CHECK_REVENUE = _context.Expenses.Where(j => j.Expense == "Transport" && j.Date.Month.ToString() == Month).Sum(c => c.Ammount);
+            if (CHECK_REVENUE != null)
+            {
+                ViewBag.total_revenue = CHECK_REVENUE;
+                ViewBag.hide_button = "1";
+
+            }
+            //LETS FIND CARTONS SOLD THIS MONTH
+            double SOLD_CARTONS_THIS_MONTH = _context.Cartons_sold.Where(x => x.Date.Month.ToString() == Month).Sum(b => b.Cartons_sold_);
+            ViewBag.sold_cartons = SOLD_CARTONS_THIS_MONTH;
+
+            //LETS CALCULATE THE REVENUE
+            double REVENUE = 0.05 * (SOLD_CARTONS_THIS_MONTH*300);
+            ViewBag.total_rvenue = REVENUE;
+
+            //LETS GET WATER & WATER BILLS
+            var WATER_BILL = _context.Expenses.Where(j => j.Expense == "Water" && j.Date.Month.ToString() == Month).Sum(c => c.Ammount);
+            ViewBag.water_bill = WATER_BILL;
+
+            //LETS GET ELECTRICITY BILLS 
+            var ELECTRICITY_BILL = _context.Expenses.Where(j => j.Expense == "Electricity" && j.Date.Month.ToString() == Month).Sum(c => c.Ammount);
+            ViewBag.electricity_bill = ELECTRICITY_BILL;
+
+
+            //LETS GET SALARY DETAILS
+            var GET_SAL = _context.Employees.FirstOrDefault();
+            int ALL_EMPLOYEES = GET_SAL.Industry_employees + GET_SAL.Supply_employees;
+            decimal SALARY = GET_SAL.Salary;
+            decimal TOTAL = ALL_EMPLOYEES * SALARY;
+            ViewBag.total_salary = TOTAL;
+            ViewBag.salary = SALARY;
+            ViewBag.industry_empl = GET_SAL.Industry_employees;
+            ViewBag.supply_empl = GET_SAL.Supply_employees;
+
             if (ModelState.IsValid)
             {
                 _context.Add(expenses);
                 await _context.SaveChangesAsync();
+                swal("Success","Expense added successfully","success");
                 return RedirectToAction(nameof(Index));
             }
+
+
+
+
             return View(expenses);
         }
 
