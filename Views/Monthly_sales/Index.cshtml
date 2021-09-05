@@ -4,14 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+   
+      <table class="text_color w-100 p-2  mr-0 m-2" >
+          <tr>
+              <td class="p-2"><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Monthly Sales Records</td>
+              <td>
+                  <form asp-action="filter">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+                  </form>
+              </td>
+          </tr>
+
+      </table>
+     
+
+<table class="table text_color p-2" style="font-size:14px;">
     <thead>
         <tr>
+            <th>
+
+
+               <span class="text-success font-weight-bold">MONTH</span> 
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Electricity_bill)
             </th>
@@ -33,15 +47,65 @@
             <th>
                 @Html.DisplayNameFor(model => model.Gross_income)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @{
+
+                    string MONTH = item.Date.Month.ToString();
+                    string YEAR = item.Date.Year.ToString();
+                    String month;
+                    switch (MONTH)
+                    {
+                        case "1":
+                            month = "JANUARY";
+                            break;
+                        case "2":
+                            month = "FEBRUARY";
+                            break;
+                        case "3":
+                            month = "MARCH";
+                            break;
+                        case "4":
+                            month = "APRIL";
+                            break;
+                        case "5":
+                            month = "MAY";
+                            break;
+                        case "6":
+                            month = "JUNE";
+                            break;
+                        case "7":
+                            month = "APRIL";
+                            break;
+                        case "8":
+                            month = "AUGUST";
+                            break;
+                        case "9":
+                            month = "SEPTEMBER";
+                            break;
+                        case "10":
+                            month = "OCTOBER";
+                            break;
+                        case "11":
+                            month = "NOVEMBER";
+                            break;
+                        case "12":
+                            month = "DECEMBER";
+                            break;
+                        default:
+                            month = "No Month";
+                            break;
+                    }
+
+                }
+                <span class="text-success font-weight-bold"> @month,@YEAR</span>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Electricity_bill)
             </td>
@@ -63,13 +127,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Gross_income)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+               
+                <a asp-action="Details" class="btn btn-sm bg-reports" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" class="btn btn-sm bg-reports" asp-route-id="@item.id">Delete</a>
             </td>
         </tr>
 }

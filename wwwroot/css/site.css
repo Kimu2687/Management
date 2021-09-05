@@ -71,6 +71,15 @@ button.accept-policy {
     background-color: #A93226 !important;
     color: #E67E22 !important;
 }
+.bg-reports {
+    background-color: #149077 !important;
+    border-radius: 10px !important;
+    color: #fdca01 !important;
+    height: auto !important;
+    width: auto !important;
+    font-size: 12px !important;
+    transition: height,width,font-size,margin,box-shadow,0.5s;
+}
 .text_yellow {
     /*home_title*/
     color: #a93226 !important;
@@ -84,6 +93,16 @@ button.accept-policy {
     transition: font-size .5s ease;
     font-size: 15px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.no_zoom {
+    color: #a93226 !important;
+    font-size: 12px;
+    -webkit-transition: font-size .5s ease;
+    -moz-transition: font-size .5s ease;
+    -o-transition: font-size .5s ease;
+    transition: font-size .5s ease;
+    font-size: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .card_label {
     -webkit-transition: font-size .5s ease;
@@ -103,15 +122,25 @@ button.accept-policy {
     width: auto !important;
     font-size: 12px !important;
     transition: height,width,font-size,margin,0.5s;
-}.button_custome:hover {
-    background-color: #a93226!important;
-    border-radius: 10px!important;
-    color: #fdca01!important;
-    margin-right:100px;
-    font-size:17px!important;
-    height:30px;
-    width:100px;
-
+}
+    .button_custome:hover {
+        background-color: #a93226 !important;
+        border-radius: 10px !important;
+        color: #fdca01 !important;
+        margin-right: 100px;
+        font-size: 17px !important;
+        height: 30px;
+        width: 100px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+.bg-reports:hover {
+    background-color: #149077 !important;
+    border-radius: 10px !important;
+    color: #fdca01 !important;
+    font-size: 17px !important;
+    height: 30px;
+    width: 100px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .button_cards {
     background-color: #922B21 !important;

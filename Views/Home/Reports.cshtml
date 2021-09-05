@@ -1,90 +1,222 @@
 ﻿
 
 
-    <div class="row " style="margin-top:30px;">
-        <div class="col-lg-12">
-            <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text-center text_color p-2">
+<div class="row " style="margin-top:30px;">
+    <div class="col-lg-12">
+        <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text-center no_zoom p-2">
 
-                <table class="w-100">
-                    <tr>
-                        <th colspan="5">
-                            <h3>Sales statistics</h3>
+            <table class="w-100">
+                <tr>
+                    <th colspan="5">
+                        <h5>Sales statistics</h5>
 
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Date from
-                            <input class="form-control" type="date" />
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Date from
+                        <input class="form-control" type="date" />
 
-                        </td>
-                        <td>
-                            Date to
-                            <input class="form-control" type="date" />
+                    </td>
+                    <td>
+                        Date to
+                        <input class="form-control" type="date" />
 
-                        </td>
-                        <td colspan="5">
-                     
-                                <button type="button" class="btn button_custome">Generate report</button>
-                                @*<button type="button" class="btn btn-secondary">Right</button>*@
-                          
+                    </td>
+                    <td colspan="5">
 
-                        </td>
+                        <button type="button" class="btn button_custome">Generate report</button>
+                        @*<button type="button" class="btn btn-secondary">Right</button>*@
+
+
+                    </td>
+
+                </tr>
+            
+
+            </table>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                   <h6 class="text_color p-1">Sales starts</h6>
+                                <div id="chart_div" class="no_zoom p-2" style="height:450px;width:450px"></div>
+
+                
+
                        
-                    </tr>
-                   
-                  
-                </table>
-                <hr />
-                <div class="row">
-                    <div class="col-lg-6">
-                        <table class="w-100">
-                            <tr>
-                                <th colspan="2">
-                                    <h3>Water & Electricity</h3>
-
-                                </th>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    GRAPH GOES HERE
-
-                                </td>
-
-                            </tr>
-
-                        </table>
-                    </div> 
-                    <div class="col-lg-6">
-                        <table class="w-100">
-                            <tr>
-                                <th >
-                                    <small>Date</small>
-
-                                </th>  
-                                <th colspan="2">
-                                    <small>Carton</small>
-
-                                </th> <th colspan="2">
-                                    <small>Sold</small>
-
-                                </th>
-                                <th colspan="2">
-                                    <small>Total</small>
-
-                                </th>
-                            </tr>
-                            
-                        </table>
-                    </div>
-
                 </div>
-               
-        
+                <div class="col-lg-6">
+                    <div class="no_zoom p-3 mb-2">
+                    <table class="w-100 text-dark  text-left">
+                        <tr class="m-2">
+                            <th colspan="4" class="text-center text_color">
+                                Past One Week Sales
+                            </th>
 
-               
+                            </tr>
+                        <tr>
+                            <th>
+                                Date
+
+                            </th>
+                            <th>
+                              Carton
+
+                            </th>
+                            <th >
+                               Sold
+
+                            </th>
+                            <th >
+                                Total
+
+                            </th>
+                        </tr>
+                        @foreach (var items in ViewBag.last_7)
+                        {
+                            <tr>
+                                <td>@items.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@items.Carton_category</td>
+                                <td>@items.Cartons_sold_</td>
+                                <td>@items.Total</td>
+                             
+                            </tr>
+
+                        }
+                      
+                        <tr>
+                            <th>
+                                Total:
+                            </th>
+                            <th>
+                                @ViewBag.one_litre.ToString("#,##0.00")
+                            </th>
+                        </tr>
+
+                    </table>
+                </div>  <div class="no_zoom p-3">
+                            <table class="w-100 text-dark  text-left">
+                                <tr class="m-2">
+                                    <th colspan="4" class="text-center text_color">
+                                        Expenses
+                                    </th>
+
+                                </tr>
+                                <tr class="m-2">
+                                    <th>
+                                        Date
+
+                                    </th>
+                                    <th>
+                                        Carton
+
+                                    </th>
+                                    <th>
+                                        Sold
+
+                                    </th>
+                                    <th>
+                                        Total
+
+                                    </th>
+                                </tr>
+                                @foreach (var items in ViewBag.last_7)
+                                {
+                                    <tr>
+                                        <td>@items.Date.ToString("dd/MM/yyyy")</td>
+                                        <td>@items.Carton_category</td>
+                                        <td>@items.Cartons_sold_</td>
+                                        <td>@items.Total</td>
+
+                                    </tr>
+
+                                }
+                                <tr>
+                                    <th>
+                                        5 litres Cartons sold:
+                                    </th>
+                                    <th>
+                                        26000
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        1 Litres Cartons sold:
+                                    </th>
+                                    <th>
+                                        70000
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total:
+                                    </th>
+                                    <th>
+                                        56000.00
+                                    </th>
+                                </tr>
+
+                            </table>
+                </div>
 
             </div>
-                </div>
-                </div>
-       
+
+
+
+
+
+        </div>
+    </div>
+</div>
+    </div>
+@section charts{
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Days of the week', 'Cartons sales'],
+            ['Monday', 15000],
+            ['Tuesday', 16000],
+            ['Wednesday', 14000],
+            ['Thursday', 18000],
+            ['Friday', 16000]
+        ]);
+		var options = {
+            chart: {
+                title: 'Sales from: @ViewBag.from to  @ViewBag.to',
+			}
+        };
+		var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        chart.draw(data, options);
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        function selectHandler(e) {
+             var selection = chart.getSelection();
+             var district=data.getFormattedValue(selection[0].row,0);
+             var url="http://google.com";
+             window.location.href =url;
+            var message = '';
+            for(var i = 0; i < selection.length; i++) {
+                var item = selection[i];
+                if (item.row != null && item.column != null) {
+                    var str = data.toJSON(item.row, item.column);
+                    message += str;
+                } else if (item.row != null) {
+                    var str = data.getFormattedValue(item.row, 0);
+                    message += '{row:' + item.row + ', column:none}; value (col 0) = ' + str + '\n';
+                } else if (item.column != null) {
+                    var str = data.getFormattedValue(0, item.column);
+                     message += '{row:none, column:' + item.column + '}; value (row 0) = ' + str + '\n';
+                }
+            }
+            if (message == '') {
+                message = 'nothing';
+            }
+
+        }
+    }
+    </script>
+
+
+}

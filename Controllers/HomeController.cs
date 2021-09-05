@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using TASK.Base_controller;
 using TASK.Models;
@@ -30,11 +31,24 @@ namespace TASK.Controllers
         }public IActionResult Index()
         {
             return View();
-        }public IActionResult Reports()
+        }public IActionResult Reports([Optional] String from, [Optional] String to,[Optional] String Carton_type)
         {
+            if (from == null)
+            {
+                //LETS GET LAST 7 SALES
+                ViewBag.last_7 = _context.Cartons_sold.Take(7).ToList();
+                ViewBag.one_litre = _context.Cartons_sold.Sum(x => x.Total);
+
+
+            }
+
             return View();
         }
-        
+        //public List<Cartons_sold> Results()
+        //{
+        //    List<Cartons_sold> sold_results = _context.Cartons_sold.ToList();
+
+        //}
         public IActionResult log_in()
         {
 

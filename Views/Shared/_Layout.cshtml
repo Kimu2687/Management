@@ -54,9 +54,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/css/sweet_alert/sweetalert.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     @RenderSection("scripts_1", required: false)
 
     @RenderSection("Scripts", required: false)
+    @RenderSection("charts", required: false)
 
     @*GLOBAL JAVASCRIPT*@
     <script>

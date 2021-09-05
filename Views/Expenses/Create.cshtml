@@ -8,7 +8,7 @@
 
 <h4 class="text_color p-3">
     <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add Expenses &nbsp;|&nbsp;
-    <a asp-action="Index" class="btn btn-outline-success">@DateTime.Now.ToString("MMMM"),@DateTime.Now.ToString("yyyy")</a>|
+    <a  class="btn bg-reports">@DateTime.Now.ToString("MMMM"),@DateTime.Now.ToString("yyyy")</a>|
     <a asp-action="Index" class="btn button_custome">Back to List</a>
 
 </h4>
@@ -256,9 +256,15 @@
             {
                 <table class="table">
                     <tr>
-                        <td class="border-0">
+                        <td style="border-right:grey 2px solid">
+                            <img style="height:50px; width:50px;" src="https://www.freeiconspng.com/thumbs/success-icon/success-icon-10.png" />
+                        </td>
+                        <td class="border-top-0">
                             NB: This month's sales have already been submitted; there is no need to do so again.<br /><br />
-                          @*  <a asp-action="Create" asp-route-submit="1" class="btn button_custome"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>*@
+                            <a asp-action="index" asp-controller="Monthly_sales"  class="btn   btn-sm bg-reports" >Go to Reports&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+
+
+                            @*  <a asp-action="Create" asp-route-submit="1" class="btn button_custome"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>*@
 
                         </td>
 
@@ -269,18 +275,20 @@
             }
             else
             {
-            <table class="table">
-                <tr>
-                    <td class="border-0">
-                        To keep track of prior months' sales, submit sales.<br /><br />
-                        <a asp-action="Create" asp-route-submit="1" class="btn button_custome"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>
+        <table class="table">
+            <tr>
+                <td  style="border-right:grey 2px solid">
+                    <img class="ml-3" style="height:50px; width:50px;" src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-1/254000/90-512.png" />
+                </td>
+                <td class="border-0">
+                    To keep track of prior months' sales, submit sales.<br /><br />
+                    <a asp-action="Create" asp-route-submit="1" class="btn   btn-sm bg-reports"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;Submit</a>
 
-                    </td>
+                </td>
 
-                </tr>
+            </tr>
 
-
-            </table>
+        </table>
             }
         </form>
 

@@ -139,7 +139,7 @@ namespace Attendant_check.Controllers
             ViewBag.profit = PROFIT;
 
             //LETS RECORD SALES RECORDS FOR THIS MONTH
-            if (submit != null)
+            if (submit != null && CHECK_MONTHLY==null)
             {
 
 
