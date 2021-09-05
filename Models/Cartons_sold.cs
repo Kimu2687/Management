@@ -26,7 +26,7 @@ namespace Attendant_check.Models
 
         [Required]
         [Display(Name = "Date", Prompt = "Date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         
 
     }

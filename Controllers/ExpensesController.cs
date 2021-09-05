@@ -7,12 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Attendant_check.Models;
 using TASK;
+using static TASK.Base_controller.BaseController;
 
 namespace Attendant_check.Controllers
 {
     public class ExpensesController : Controller
     {
+
         private readonly Database_Context _context;
+        private static string sDate = DateTime.Now.ToString();
+        private static  DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+        String DAY = datevalue.Day.ToString();
+        String MM = datevalue.Month.ToString();
+        String YY = datevalue.Year.ToString();
+        
 
         public ExpensesController(Database_Context context)
         {
@@ -46,7 +54,30 @@ namespace Attendant_check.Controllers
         // GET: Expenses/Create
         public IActionResult Create()
         {
-            return View();
+            //INSTANSTIATING GENERAL CLASS FROM BASE CONTROLLER
+
+            general_class x = new general_class();
+            string Month = x.Month(DateTime.Now.ToString("MM/dd/yyyy"));
+
+
+            //LETS CHECK IF REVENUE HAS BEE SUBMITTED THIS MONTH
+            var CHECK_REVENUE = _context.Expenses.Where(j => j.Expense == "Transport" && j.Date.Month.ToString()==Month).Sum(c=>c.Ammount);
+            if (CHECK_REVENUE != null)
+            {
+                ViewBag.total_revenue = CHECK_REVENUE;
+
+
+            }
+            //LETS FIND CARTONS SOLD THIS MONTH
+            double SOLD_CARTONS_THIS_MONTH = _context.Cartons_sold.Where(x => x.Date.Month.ToString() == Month).Sum(b => b.Cartons_sold_);
+            ViewBag.sold_cartons = SOLD_CARTONS_THIS_MONTH;
+
+            //LETS CALCULATE THE REVENUE
+            double REVENUE = 0.05 * SOLD_CARTONS_THIS_MONTH;
+            ViewBag.total_rvenue = REVENUE;
+
+
+            return  View();
         }
 
         // POST: Expenses/Create

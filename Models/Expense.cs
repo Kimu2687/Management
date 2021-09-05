@@ -18,11 +18,11 @@ namespace Attendant_check.Models
 
         [Required]
         [Display(Name = "Ammount", Prompt = "Ammount")]
-        public string Ammount { get; set; }
+        public decimal Ammount { get; set; }
 
 
         [Display(Name = "Date", Prompt = "Date")]
-        public string Date { get; set; } = "12345678";
+        public DateTime Date { get; set; }
         
         
 

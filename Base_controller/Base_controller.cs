@@ -19,13 +19,38 @@ namespace TASK.Base_controller
         }
 
         //GLOBAL AJAX RESPONSE
-        public class Total_cash_made
+        public class general_class
         { 
             public string response_message { get; set; }
+            public string Date_(string date)
+            {
+                String sDate = DateTime.Now.ToString(date);
+                DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+                string DAY = datevalue.Day.ToString();
+                return DAY;
+            }//SPLIT YEAR
+            public string Year(string date)
+            {
+                String sDate = DateTime.Now.ToString(date);
+                DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+                string YEAR = datevalue.Year.ToString();
+                return YEAR;
+            }//SPLIT DAY
+            public string Month(string date)
+            {
+                String sDate = DateTime.Now.ToString(date);
+                DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+                string MNTH = datevalue.Month.ToString();
+                return MNTH;
+            }
         }
 
+
+        //SPLIT DAY
+       
         //FEEDING THE MESSAGE
-        public Total_cash_made res = new Total_cash_made();
+        public general_class res = new general_class();
+
     }
-  
+
 }

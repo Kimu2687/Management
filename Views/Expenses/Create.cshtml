@@ -4,17 +4,26 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
 
-<h4>Add Expenses</h4>
-<hr />
+
+<h4 class="text_color p-3">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add Expenses &nbsp;|&nbsp;
+    <a asp-action="Index" class="btn button_custome">Back to List</a>
+
+</h4>
+@*<hr />*@
+<br />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 text_color p-3 ">
+        <h6 class="font-weight-bold">Water and Electricity bill</h6>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Expense" class="control-label"></label>
+                <label class="control-label">Choose expense:</label>
                 <select class="form-control" asp-for="Expense">
+                    <option value="Water">
+                        --Choose Expense--
+                    </option>
                     <option value="Water">
                         Water
                     </option>
@@ -28,25 +37,75 @@
                 <span asp-validation-for="Expense" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ammount" class="control-label"></label>
+                <label class="control-label">Ammount in Ksh.</label>
                 <input asp-for="Ammount" class="form-control" />
                 <span asp-validation-for="Ammount" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>
                 <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" value="@DateTime.Now.ToString("dd/mm/yyyy")" class="form-control" />
+                <input asp-for="Date" value="@DateTime.Now.ToString("yyyy-MM-mmThh:mm")" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default button_custome" />
+                <input type="submit" value="Submit" class="btn btn-default button_custome" />
+            </div>
+        </form>
+        <h6 class="font-weight-bold">Transport expenses this month:</h6>
+        <table class="table">
+            <tr>
+                <th>Ksh.</th>
+                <th>@ViewBag.total_revenue.ToString("#,##0.00")</th>
+            </tr>
+           
+        </table>
+    </div>
+    <div class="col-md-6 text_color p-3">
+        <h6 class="font-weight-bold">Revenue per carton:</h6>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Expense" class="control-label"></label>
+                <select class="form-control" asp-for="Expense" disabled>
+                    <option value="Revenue" selected>
+                        Revenue
+                    </option> <option value="Water">
+                        Water
+                    </option>
+                    <option value="Electricity">
+                        Electricity
+                    </option>
+
+
+
+                </select>
+                <span asp-validation-for="Expense" class="text-danger"></span>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Rate:</th>
+                    <th>5%</th>
+                </tr><tr>
+                    <th>Carton sold this month:</th>
+                    <th>@ViewBag.sold_cartons.ToString("#,##0")</th>
+                </tr>
+            </table>
+            <div class="form-group">
+                <label  class="control-label">Ammount:</label>
+                <input disabled value="@ViewBag.total_rvenue" asp-for="Ammount" class="form-control" />
+                <span asp-validation-for="Ammount" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" value="@DateTime.Now.ToString("#,##0.000")" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default button_custome" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="btn button_custome">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

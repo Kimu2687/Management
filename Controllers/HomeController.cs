@@ -75,7 +75,7 @@ namespace TASK.Controllers
         }
         
         [HttpPost]
-        public JsonResult add_bottles(string transport, int quantity, string category)
+        public JsonResult add_bottles(decimal transport, int quantity, string category)
         {
             //LETS ADD BOTTLES TO THIS CATEGORY 
             var P_QUANTITY = _context.Cartons.FirstOrDefault(x => x.Carton_category == category);
@@ -94,7 +94,7 @@ namespace TASK.Controllers
             Expenses EX = new Expenses();
             EX.Expense = "Transport";
             EX.Ammount = transport;
-            EX.Date = DateTime.Now.ToString("dd/MM/yyyy");
+            EX.Date = DateTime.Now;
             _context.Add(EX);
             _context.SaveChanges();
 
@@ -109,17 +109,52 @@ namespace TASK.Controllers
         {
             //LETS BIND THE REQUIRED RECORDS
             ViewBag.cartons = _context.Cartons.ToList();
-            ViewBag.one_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "1 Litre").No_of_bottle;
-            ViewBag.five_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "5 Litres").No_of_bottle;
 
+            var one_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "1 Litre");
+            var five_litres = _context.Cartons.FirstOrDefault(x => x.Carton_category == "5 Litres");
             var employees = _context.Employees.FirstOrDefault();
 
-            ViewBag.industry_empl = employees.Industry_employees;
-            ViewBag.supply_empl = employees.Supply_employees;
-            ViewBag.salary = employees.Salary;
+            if (one_litre != null)
+            {
+                ViewBag.one_litre = one_litre.No_of_bottle;
 
+            }
+            else
+            {
+                ViewBag.one_litre = 0;
+
+            }
+            if (five_litres != null)
+            {
+                ViewBag.five_litre = five_litres.No_of_bottle;
+
+            }
+            else
+            {
+                ViewBag.five_litre = 0;
+
+            }
+            if (employees != null)
+            {
+
+
+                ViewBag.industry_empl = employees.Industry_employees;
+                ViewBag.supply_empl = employees.Supply_employees;
+                ViewBag.salary = employees.Salary;
+            }
+            else
+            {
           
-            ViewBag.count_items = 1;
+                ViewBag.industry_empl = 0;
+                ViewBag.supply_empl = 0;
+                ViewBag.salary = 0;
+            }
+
+
+            
+           
+           
+          
             return View();
         }public IActionResult Privacy()
         {
@@ -146,7 +181,7 @@ namespace TASK.Controllers
                 Cartons_sold C_S = new Cartons_sold();
                 C_S.Cartons_sold_ = carton_sold;
                 C_S.Carton_category = carton_;
-                C_S.Date = DateTime.Now.ToString("dd/MM/yyyy");
+                C_S.Date = DateTime.Now;
                 C_S.Total = GET_FIELDS.Selling_price * carton_sold;
                 _context.Add(C_S);
                 _context.SaveChanges();
