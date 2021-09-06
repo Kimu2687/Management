@@ -31,8 +31,12 @@ namespace TASK.Controllers
         }public IActionResult Index()
         {
             return View();
-        }public IActionResult Reports([Optional] String from, [Optional] String to,[Optional] String Carton_type)
+        }
+        
+        public IActionResult Reports([Optional] String from, [Optional] String to)
         {
+            ViewBag.from = from;
+            ViewBag.to = to;
             if (from == null)
             {
                 //LETS GET LAST 7 SALES
@@ -43,6 +47,26 @@ namespace TASK.Controllers
                 ViewBag.last_7_exp = _context.Expenses.Take(7).ToList();
                 ViewBag.sum_last_7 = _context.Expenses.Take(7).Sum(x => x.Ammount);
 
+
+            }
+            else
+            {
+                DateTime date_temp_from = DateTime.Parse(from); //from.value" is input by user (dd/MM/yyyy)
+                DateTime date_temp_to = DateTime.Parse(to); //to.value" is input by user (dd/MM/yyyy)
+
+                string date_from = date_temp_from.ToString("yyyy/MM/dd HH:mm");
+                string date_to = date_temp_to.ToString("yyyy/MM/dd HH:mm");
+
+                ViewBag.last_7 = _context.Cartons_sold.Where(entry => entry.Date >= date_temp_from
+                 && entry.Date <= date_temp_to).ToList();
+                ViewBag.one_litre = _context.Cartons_sold.Where(entry => entry.Date >= date_temp_from
+                 && entry.Date <= date_temp_to).Sum(x => x.Ammount);
+
+
+                ViewBag.last_7_exp = _context.Expenses.Where(entry => entry.Date >= date_temp_from
+                 && entry.Date <= date_temp_to).ToList();
+                ViewBag.sum_last_7 = _context.Expenses.Where(entry => entry.Date >= date_temp_from
+                 && entry.Date <= date_temp_to).Sum(x => x.Ammount);
 
             }
 

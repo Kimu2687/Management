@@ -4,7 +4,7 @@
 <div class="row " style="margin-top:30px;">
     <div class="col-lg-12">
         <div class="w3-panel w3-card-4 p-10 shaddo bg-white dashbord text-center no_zoom p-2">
-            <form asp-action="Report">
+            <form asp-action="Reports" asp-controller="home">
             <table class="w-100">
                 <tr>
                     <th colspan="5">
@@ -15,17 +15,17 @@
                 <tr>
                     <td>
                         Date from
-                        <input name="from" class="form-control" type="date" />
+                        <input name="from" value="@ViewBag.from" class="form-control" type="date" />
 
                     </td>
                     <td>
                         Date to
-                        <input name="to" class="form-control" type="date" />
+                        <input name="to"  value="@ViewBag.from" class="form-control" type="date" />
 
                     </td>
                     <td colspan="5">
 
-                        <button type="button" class="btn button_custome">Generate report</button>
+                        <button type="submit" class="btn button_custome">Filter</button>
                         @*<button type="button" class="btn btn-secondary">Right</button>*@
 
 
@@ -51,7 +51,7 @@
                     <table class="w-100 text-dark  text-left">
                         <tr class="m-2">
                             <th colspan="4" class="text-center text_color">
-                                Past One Week Sales
+                                Search results
                             </th>
 
                             </tr>
@@ -136,7 +136,7 @@
                                         Total:
                                     </th>
                                     <th>
-                                       Ksh. @ViewBag.sum_last_7.ToString("#0,##0.00")
+                                       Ksh. @ViewBag.sum_last_7.ToString("#,##0.00")
                                     </th>
                                 </tr>
 
