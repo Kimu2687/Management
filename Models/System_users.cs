@@ -25,9 +25,9 @@ namespace Attendant_check.Models
         public string Password { get; set; } = "12345678";
 
 
-        [Required]
-        [Display(Name = "Date", Prompt = "Date")]
-        public DateTime Date { get; set; }
+        //[Required]
+        //[Display(Name = "Date", Prompt = "Date")]
+        //public DateTime Date { get; set; } = DateTime.Now;
 
         [Required]
         [Display(Name = "Role", Prompt = "Role")]

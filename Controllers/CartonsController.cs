@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Attendant_check.Models;
 using TASK;
+using TASK.Base_controller;
 
 namespace Attendant_check.Controllers
 {
-    public class CartonsController : Controller
+    public class CartonsController : BaseController
     {
         private readonly Database_Context _context;
 
@@ -60,7 +61,8 @@ namespace Attendant_check.Controllers
             {
                 _context.Add(cartons);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                swal("Success!", "Cartons category recorded successfully", "success");
+                return Redirect("~/home/Dashboard");
             }
             return View(cartons);
         }
@@ -142,7 +144,8 @@ namespace Attendant_check.Controllers
             var cartons = await _context.Cartons.FindAsync(id);
             _context.Cartons.Remove(cartons);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            swal("Success", "Record deleted successfullY", "success");
+            return Redirect("~/home/Dashboard");
         }
 
         private bool CartonsExists(int id)

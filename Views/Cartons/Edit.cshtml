@@ -3,14 +3,15 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h2>Edit</h2>
-
-<h4>Cartons</h4>
+<h4 class="text_color p-2"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Modify cartons details</h4>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <div class="col-md-7 text-center">
+        <img src="/images/modify.png" class="_side" />
+    </div>
+    <div class="col-md-5">
+        <form asp-action="Edit" class="text_color p-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
@@ -39,7 +40,7 @@
                 <span asp-validation-for="bottle_per_carton" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-sm button_custome" />
             </div>
         </form>
     </div>

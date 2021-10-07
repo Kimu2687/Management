@@ -1,8 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+<div class="row mt-5">
+    <div class="col-lg-6 text-center mb-3">
+        <img src="/images/log_in.png" class="log_in" />
+        <h4  style="        color: #A93226
+"
+>
+           Welcome!
+        </h4>
+        <h6>Sale management system.</h6>
+       
+        <br />
+    </div>
+    <div class="col-lg-6 ">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <div class="card w3-card bg-white text_color text-center justify-content-center" >
+                    <div class="card-header text-center text-white border-0" style="    color: #f39c12 !important;
+        background-color: #A93226
+    ">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp; Please log in to proceed
+                    </div>
+                    <div class="card-body pb-0">
+                        <form action="/System_users/Log_in_user" method="post">
+                            <div class="form-group">
+                                <input maxlength="10" class="form-control input-validation-error" name="id" required="required" type="tel" autocomplete="off" data-val="true" data-val-required="The Phone number field is required." id="Phone" placeholder="ID number" />
+                            </div>
+                            <div class="form-group">
+                                <input maxlength="10" class="form-control input-validation-error" name="password" type="password" autocomplete="off" placeholder="Enter password" required="required" id="pass" data-val="true" data-val-required="The Password field is required." />
+                            </div>
+                            <div class="form-group">
+                                <table class="table">
+                                    <tr>
+                                        <td class="text-center" style="border:none;">
+
+                                            <a class="btn btn-light w3-card" asp-action="Dashboard">Log in&nbsp;<i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
+                                            <a href="#" class="btn btn-light w3-card" type="submit">Forgot password?</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+<div>
+    @*<a asp-action="Index">Back to List</a>*@
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

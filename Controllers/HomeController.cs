@@ -60,7 +60,7 @@ namespace TASK.Controllers
                 ViewBag.last_7 = _context.Cartons_sold.Where(entry => entry.Date >= date_temp_from
                  && entry.Date <= date_temp_to).ToList();
                 ViewBag.one_litre = _context.Cartons_sold.Where(entry => entry.Date >= date_temp_from
-                 && entry.Date <= date_temp_to).Sum(x => x.Ammount);
+                 && entry.Date <= date_temp_to).Sum(x => x.Total);
 
 
                 ViewBag.last_7_exp = _context.Expenses.Where(entry => entry.Date >= date_temp_from
@@ -155,7 +155,7 @@ namespace TASK.Controllers
             _context.SaveChanges();
 
             //LETS UPDATE THE INTERFACE WITH THE NEW BOTTLE QUANTITY
-            res.response_message = N_QNTY.ToString();
+            res.response_message = (N_QNTY/P_QUANTITY.bottle_per_carton).ToString();
 
             return Json(res);
         }
@@ -164,14 +164,13 @@ namespace TASK.Controllers
         {
             //LETS BIND THE REQUIRED RECORDS
             ViewBag.cartons = _context.Cartons.ToList();
-
             var one_litre = _context.Cartons.FirstOrDefault(x => x.Carton_category == "1 Litre");
             var five_litres = _context.Cartons.FirstOrDefault(x => x.Carton_category == "5 Litres");
             var employees = _context.Employees.FirstOrDefault();
 
             if (one_litre != null)
             {
-                ViewBag.one_litre = one_litre.No_of_bottle;
+                ViewBag.one_litre = one_litre.No_of_bottle/one_litre.bottle_per_carton;
 
             }
             else
@@ -181,7 +180,7 @@ namespace TASK.Controllers
             }
             if (five_litres != null)
             {
-                ViewBag.five_litre = five_litres.No_of_bottle;
+                ViewBag.five_litre = five_litres.No_of_bottle/five_litres.bottle_per_carton;
 
             }
             else
@@ -205,8 +204,10 @@ namespace TASK.Controllers
                 ViewBag.salary = 0;
             }
 
-
-            
+            //GETTING ALL EMPLOYEES
+            int INDUSTRY_EMPL = _context.Employees.Sum(x => x.Industry_employees);
+            int SUPPLY_EMPL = _context.Employees.Sum(x => x.Supply_employees);
+            ViewBag.employees = INDUSTRY_EMPL + SUPPLY_EMPL;
            
            
           

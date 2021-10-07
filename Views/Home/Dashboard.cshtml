@@ -22,7 +22,10 @@
                                     <td><a   asp-action="Index" asp-controller="System_users" class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;System users</a></td>
                                     <td><button data-toggle="modal" data-target="#manage_cartons" class="btn button_custome " action><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Add or restock cartons</button></td>
                                     <td><button data-toggle="modal" data-target="#sell_item" class="btn button_custome "><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>&nbsp;Sell carton</button></td>
-                                    <td>  <a asp-action="Close_month"  class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Close month</a></td>
+                                    @*<td>  <a asp-action="Close_month"  class="btn button_custome "><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Close month</a></td>*@
+                                    <td>  <a asp-action="log_in" class="btn button_custome ">
+    <i class="fa fa-power-off"></i>&nbsp;Log out
+</a></td>
                                     <td>
                                        
                                     </td>
@@ -52,7 +55,7 @@
             <div class="dashbord">
                 <div class="icon-section">
                     <i class="fa fa-square-o" aria-hidden="true"></i><br />
-                    <h6 class="card_label">1 Litre bottles</h6>
+                    <h6 class="card_label">1 Litre Cartons</h6>
                     <p></p>
                     <h5 class="font-weight-bold text_color_cards" id="one_litres_label">@ViewBag.one_litre</h5>
 
@@ -71,7 +74,7 @@
             <div class="dashbord">
                 <div class="icon-section">
                     <i class="fa fa-square" aria-hidden="true"></i><br />
-                    <h6 class="card_label">5 Litre bottles</h6>
+                    <h6 class="card_label">5 Litre Cartons</h6>
                     <p></p>
                     <h5 class="font-weight-bold text_color_cards" id="five_litres_label">@ViewBag.five_litre</h5>
 
@@ -105,8 +108,8 @@
                 <div class="icon-section">
                     <i class="fa fa-users" aria-hidden="true"></i><br />
                     <h6 class="card_label">Employees</h6>
-                    <p>@ViewBag.Staff</p>
-                    <h5 class="font-weight-bold text_color_cards">10</h5>
+                   
+                    <h5 class="font-weight-bold text_color_cards">@ViewBag.employees</h5>
 
                 </div>
                 <div class="detail-section">
@@ -167,7 +170,7 @@
 
 
 
-                <table class="w-100 mt-3">
+                <table class="w-100 mt-3" style="font-size:13px">
                     <tr>
                         <th>Bottle type</th>
                         <th>Buying Price/ bottle</th>
@@ -435,7 +438,7 @@
                         <tr>
                             <th colspan="2">
                                 <p class="text-danger" id="error"></p>
-                                <button class="btn button_custome mt-3" id="update_price"  action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update price</button>
+                                <button class="btn button_custome mt-3" id="update_price"  action><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Update employees details</button>
                             </th>
 
                         </tr>

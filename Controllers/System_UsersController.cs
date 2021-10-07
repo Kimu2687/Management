@@ -54,7 +54,7 @@ namespace Attendant_check.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Full_names,Staff_no,Password,Date,Roles")] System_Users system_Users)
+        public async Task<IActionResult> Create([Bind("id,Full_names,Staff_no,Password,Roles")] System_Users system_Users)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Attendant_check.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Full_names,Staff_no,Password,Date,Roles")] System_Users system_Users)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Full_names,Staff_no,Password,Roles")] System_Users system_Users)
         {
             if (id != system_Users.id)
             {

@@ -4,12 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text_color p-2">
+    <i class="fa fa-users"></i>&nbsp;System users
+</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-sm button_custome">Create New</a>
 </p>
-<table class="table">
+<table class="table text_color">
     <thead>
         <tr>
             <th>
@@ -21,9 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Password)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Roles)
             </th>
@@ -42,16 +42,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.Roles)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Edit" class="btn-sm button_custome " asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" class="btn-sm button_custome "  asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" class="btn-sm button_custome "  asp-route-id="@item.id">Delete</a>
             </td>
         </tr>
 }
